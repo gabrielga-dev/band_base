@@ -16,6 +16,8 @@ class CreateBandUsersTable extends Migration
         Schema::create('band_users', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->string('functions',100);
+
             $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedInteger('band_id')->nullable();

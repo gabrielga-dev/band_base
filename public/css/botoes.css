@@ -1,0 +1,29 @@
+.btn
+{
+	text-decoration: none;
+	color: inherit;
+}
+
+.btn-bor
+{
+	border: solid 1px black;
+	padding: 3px 15px 3px 15px;
+}
+
+.btn-bor-rad
+{
+	border-radius: 10px 10px 10px 10px;
+}
+
+.btn-center
+{
+	width: 50%;
+	margin-left: 25%;
+	margin-right: 25%;
+}
+
+/*=============================================*/
+.btn-concluir
+{
+	background-color: green;
+}

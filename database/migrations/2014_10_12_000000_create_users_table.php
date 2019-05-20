@@ -23,7 +23,6 @@ class CreateUsersTable extends Migration
             $table->date('birth_date')->nullable();
             $table->integer('age')->nullable();
             $table->boolean('artistic_name')->nullable();
-            $table->text('function');
             $table->rememberToken();
             $table->timestamps();
         });

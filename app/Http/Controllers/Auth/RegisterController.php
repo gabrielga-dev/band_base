@@ -48,9 +48,35 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'name'      => 'required|string|min:3|max:75',
+            'email'     => 'required|string|email|max:250|unique:users',
+            'password'  => 'required|string|min:6|confirmed',
+            'tag'       =>'required|string|min:2|max:50|unique:users'
+        ],[
+            'name.required'         =>' é obrigatório!',
+            'name.string'           =>'Nome deve ser um texto!',
+            'name.min'              =>'Nome não ultapassou o mínimo de caracteres! (3 caracteres)',
+            'name.max'              =>'Nome ultapassou o máximo de caracteres! (75 caracteres)',
+
+
+            'email.required'        =>'Email é obrigatório!',
+            'email.string'          =>'Email deve ser um texto!',
+            'email.email'           =>'Email deve ser um email válido!',
+            'email.max'             =>'Email ultapassou o máximo de caracteres! (250 caracteres)',
+            'email.unique'          =>'Este email já está sendo usado!',
+
+
+            'password.required'     =>'Senha é obrigatória!',
+            'passwordstring.'       =>'Senha deve ser um texto!',
+            'password.min'          =>'Senha não ultapassou o mínimo de caracteres! (6 caracteres)',
+            'password.confirmed'    =>'Senhas não batem!',
+
+
+            'tag.required'          =>'Tag é obrigatória!',
+            'tag.string'            =>'Tag deve ser um texto!',
+            'tag.min'               =>'Tag não ultapassou o mínimo de caracteres! (3 caracteres)',
+            'tag.max'               =>'Tag ultapassou o máximo de caracteres! (50 caracteres)',
+            'tag.unique'            =>'Esta tag já está sendo usado!',
         ]);
     }
 
@@ -63,9 +89,10 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'name'      => $data['name'],
+            'email'     => $data['email'],
+            'password'  => bcrypt($data['password']),
+            'tag'       =>$data['tag'],
         ]);
     }
 }
