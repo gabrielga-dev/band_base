@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSocialMediaTable extends Migration
+class CreatePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,16 @@ class CreateSocialMediaTable extends Migration
      */
     public function up()
     {
-        Schema::create('social_media', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
-            $table->enum('name', ['Facebook', 'Intagram', 'Twitter', 'YouTube', 'Spotfy', 'BandCamp', 'Outro'])->default('Spotfy');
 
-            $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('title',30);
+            $table->string('brief',100);
+            $table->text('content');
+
+            $table->unsignedInteger('band_id')->nullable();
+            $table->foreign('band_id')->references('id')->on('bands')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
@@ -30,6 +34,6 @@ class CreateSocialMediaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('social_media');
+        Schema::dropIfExists('posts');
     }
 }

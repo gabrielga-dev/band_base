@@ -15,14 +15,20 @@ class CreateEventsTable extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 40);
+            $table->string('name',50);
             $table->date('date');
             $table->time('time');
-            $table->string('location', 150);
+            $table->text('Buy_url');
 
-            $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('local_name',75)->nulable();
+            $table->string('street',75);
+            $table->string('complement',75)->nullable();
+            $table->string('neighborhood',75);
+            $table->string('city',75);
+            $table->string('state',75);
 
+            $table->unsignedInteger('band_id')->nullable();
+            $table->foreign('band_id')->references('id')->on('bands')->onDelete('cascade');
             $table->timestamps();
         });
     }

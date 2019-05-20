@@ -15,17 +15,15 @@ class CreateMusicsTable extends Migration
     {
         Schema::create('musics', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 50);
-            $table->string('genre',50);
-            $table->integer('number');
-            $table->string('link_to_listen')->nullable();
-            $table->text('description',250)->nullable();
+            $table->string('name',35);
+            $table->string('genre',100)->nullable();
+            $table->integer('number')->nullable();
 
-
-            $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->unsignedInteger('album_id');
+            $table->unsignedInteger('album_id')->nullable();
             $table->foreign('album_id')->references('id')->on('albums')->onDelete('cascade');
+            $table->unsignedInteger('band_id')->nullable();
+            $table->foreign('band_id')->references('id')->on('bands')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

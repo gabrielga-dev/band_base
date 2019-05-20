@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePhotosTable extends Migration
+class CreateMediaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,19 @@ class CreatePhotosTable extends Migration
      */
     public function up()
     {
-        Schema::create('photos', function (Blueprint $table) {
+        Schema::create('media', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title',50);
-            $table->string('subtitle',250);
+
+            $table->boolean('type');//0->photo 1->video
+            $table->text('url');
             $table->boolean('is_profile');
-            
-            $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            
+            $table->text('file_name');
+            $table->text('description',250)->nullable();
+
+            $table->unsignedInteger('band_id')->nullable();
+            $table->foreign('band_id')->references('id')->on('bands')->onDelete('cascade');
+
+
             $table->timestamps();
         });
     }
@@ -33,6 +37,6 @@ class CreatePhotosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('photos');
+        Schema::dropIfExists('media');
     }
 }

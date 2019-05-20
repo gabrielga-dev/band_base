@@ -15,16 +15,15 @@ class CreateAlbumsTable extends Migration
     {
         Schema::create('albums', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 50);
-            $table->date('date_release');
-            $table->string('recording_company',30);
-            $table->string('genre',50);
-            $table->string('link_to_listen')->nullable();
-            $table->text('description',450)->nullable();
 
+            $table->string('name',35);
+            $table->date('launch_date');
+            $table->string('recorder',50)->nullable();
+            $table->text('buy_url')->nullable();
+            $table->string('genre',100)->nullable();
 
-            $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedInteger('band_id')->nullable();
+            $table->foreign('band_id')->references('id')->on('bands')->onDelete('cascade');
 
             $table->timestamps();
         });
