@@ -9,6 +9,7 @@
     	<link href="{{ asset('css/botoes.css') }}" rel="stylesheet">
     	<link href="{{ asset('css/inputs.css') }}" rel="stylesheet">
     	<link href="{{ asset('css/titles.css') }}" rel="stylesheet">
+    	<link href="{{ asset('css/img.css') }}" rel="stylesheet">
 	</head>
 	<body>
 		<header>
@@ -42,7 +43,7 @@
 					</div>
 				@if(Auth::user())
 					<div class=" col-l col-1 pula-0p5"> 
-						<a href="#" class="btn btn-bor btn-bor-rad">Perfil</a>
+						<a href="{{route('usuario.show', Auth::user()->id)}}" class="btn btn-bor btn-bor-rad">Perfil</a>
 					</div>
 					<div class=" col-l col-1 "> 
 						<a href="{{ route('logout') }}" class="btn btn-bor btn-bor-rad">Sair</a>

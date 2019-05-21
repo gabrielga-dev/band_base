@@ -1,0 +1,10 @@
+ .profile-pic
+ {
+ 	border: solid 2px black;
+ 	border-radius: 25px;
+ }
+ .big-pic
+ {
+ 	width: 250px;
+ 	height:  250px;
+ }

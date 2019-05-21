@@ -12,12 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	$eventos = App\Event::get();
+    return view('welcome', ['eventos'=>$eventos]);
+})->name('inicio');
+Route::get('/home', function () {
+	$eventos = App\Event::get();
+    return view('welcome', ['eventos'=>$eventos]);
 })->name('inicio');
 
 Auth::routes();
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
-Route::get('/home', function () {
-    return view('welcome');
-})->name('home');
+//ROTAS USER
+Route::resource('usuario','UserController');

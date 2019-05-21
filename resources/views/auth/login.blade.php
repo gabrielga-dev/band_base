@@ -15,7 +15,7 @@
                     <h5 class="title title-center">Senha:</h5>
                     <input type="password" name="password" id="password" class="inpt-txt inpt-center" required>
                     <br><br>
-                    <input type="submit" name="logar" value="Logar" class="btn btn-bor btn-bor-rad btn-center">
+                    <input type="submit" name="logar" value="Logar" class="btn btn-bor btn-bor-rad btn-center btn-concluir">
                 </form>
                 @if($errors->any())
                 <br><br>

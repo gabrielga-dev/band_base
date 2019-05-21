@@ -14,6 +14,13 @@
 	margin-top: 2.5px;
 }
 
+.scroll-div
+{
+	overflow-y: scroll;
+	width: 100%;
+	height:400px;
+}
+
 /*=============================================*/
 
 .col
@@ -164,6 +171,74 @@
 .pula-6p5
 {
 	margin-left: 65%;
+}
+/*=====================================*/
+
+.pula-1-r
+{
+	margin-right: 10%;
+}
+.pula-2-r
+{
+	margin-right: 20%;
+}
+.pula-3-r
+{
+	margin-right: 30%;
+}
+.pula-4-r
+{
+	margin-right: 40%;
+}
+.pula-5-r
+{
+	margin-right: 50%;
+}
+.pula-6-r
+{
+	margin-right: 60%;
+}
+.pula-7-r
+{
+	margin-right: 70%;
+}
+.pula-8-r
+{
+	margin-right: 80%;
+}
+.pula-9-r
+{
+	margin-right: 90%;
+}
+.pula-10-r
+{
+	margin-right: 100%;
+}
+
+/*======================================*/
+.pula-0p5-r
+{
+	margin-right: 5%;
+}
+.pula-1p5-r
+{
+	margin-right: 15%;
+}
+.pula-2p5-r
+{
+	margin-right: 25%;
+}
+.pula-3p3-r
+{
+	margin-right: 33%;
+}
+.pula-5p5-r
+{
+	margin-right: 55%;
+}
+.pula-6p5-r
+{
+	margin-right: 65%;
 }
 
 /*=====================================*/
