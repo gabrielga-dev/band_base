@@ -17,6 +17,7 @@ class CreateBandsTable extends Migration
             $table->increments('id');
             $table->string('name',100);
             $table->string('email');
+            $table->string('file_name');
             $table->integer('views');
             $table->string('genre',100);
             $table->boolean('active');

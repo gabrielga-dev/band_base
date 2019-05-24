@@ -17,8 +17,16 @@
 .scroll-div
 {
 	overflow-y: scroll;
+    overflow-x: hidden;
 	width: 100%;
 	height:400px;
+}
+.scroll-div-300
+{
+	overflow-y: scroll;
+    overflow-x: hidden;
+	width: 100%;
+	height:300px;
 }
 
 /*=============================================*/

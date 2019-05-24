@@ -10,6 +10,7 @@
     	<link href="{{ asset('css/inputs.css') }}" rel="stylesheet">
     	<link href="{{ asset('css/titles.css') }}" rel="stylesheet">
     	<link href="{{ asset('css/img.css') }}" rel="stylesheet">
+    	<link href="{{ asset('css/tables.css') }}" rel="stylesheet">
 	</head>
 	<body>
 		<header>
@@ -19,30 +20,14 @@
 				</div>
 				@if(Auth::user())
 					<div class=" col-l col-1">
-						<a href="#" class="btn btn-bor btn-bor-rad">Agenda</a>
-					</div>
-					<div class=" col-l col-1p5">
-						<a href="#" class="btn btn-bor btn-bor-rad">Músicas/Álbuns</a>
-					</div>
-					<div class=" col-l col-1"> 
-						<a href="#" class="btn btn-bor btn-bor-rad">Fotos/Vídeos</a>
-					</div>
-					<div class=" col-l col-1"> 
-						<a href="#" class="btn btn-bor btn-bor-rad">Contato</a>
-					</div>
-				@else
-					<div class=" col-l col-5p5">
-						&nbsp;
+						<a href="{{route('banda.index')}}" class="btn btn-bor btn-bor-rad">Bandas</a>
 					</div>
 				@endif
-					<div class=" col-l col-2">
-						<form>
-							<input type="text" name="pesquisa" id="pesquisa" class="inpt-txt" placeholder="Busque alguma banda...">
-							<input type="submit" value="Buscar" class="btn btn-bor btn-bor-rad">
-						</form>
-					</div>
 				@if(Auth::user())
-					<div class=" col-l col-1 pula-0p5"> 
+					<div class=" col-r col-1 "> 
+						<a href="{{ route('logout') }}" class="btn btn-bor btn-bor-rad">Sair</a>
+					</div>
+					<div class=" col-r col-1 pula-0p5"> 
 						<a href="{{route('usuario.show', Auth::user()->id)}}" class="">
 							@if(Auth::user()->file_name=="NA")
 								<img class="profile-pic small-pic" src="{{url('storage/default_images/user_default.png')}}">
@@ -51,14 +36,17 @@
 							@endif
 						</a>
 					</div>
-					<div class=" col-l col-1 "> 
-						<a href="{{ route('logout') }}" class="btn btn-bor btn-bor-rad">Sair</a>
-					</div>
 				@else
-					<div class=" col-l col-1 pula-0p5"> 
+					<div class=" col-r col-1 pula-0p5"> 
 						<a href="{{ route('login') }}" class="btn btn-bor btn-bor-rad">Login</a>
 					</div>
 				@endif
+					<div class=" col-r col-2">
+						<form>
+							<input type="text" name="pesquisa" id="pesquisa" class="inpt-txt" placeholder="Busque alguma banda...">
+							<input type="submit" value="Buscar" class="btn btn-bor btn-bor-rad">
+						</form>
+					</div>
 				<div class="clear"></div>
 			</div>
 		</header>

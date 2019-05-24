@@ -1,0 +1,8 @@
+.tbl-bor
+{
+	border: solid 2px black;
+}
+.tbl-bor-rad
+{
+	border-radius: 20px 0px 0px 20px;
+}

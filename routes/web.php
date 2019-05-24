@@ -27,3 +27,7 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name(
 Route::resource('usuario','UserController');
 Route::post('/usuario/muda_foto', 'UserController@mudaFoto')->name('usuario.muda_foto');
 Route::get('/usuario/retira_foto/{id}', 'UserController@retiraFoto')->name('usuario.retira_foto');
+
+//ROTAS BANDA
+Route::resource('banda','BandController');
+Route::post('/banda/delete/{id}', 'UserController@delete')->name('banda.delete');

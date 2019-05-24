@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBandUsersTable extends Migration
+class CreateBandUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateBandUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('band_users', function (Blueprint $table) {
+        Schema::create('band_user', function (Blueprint $table) {
             $table->increments('id');
 
             $table->string('functions',100);
 
-            $table->unsignedInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->unsignedInteger('band_id')->nullable();
-            $table->foreign('band_id')->references('id')->on('bands')->onDelete('cascade');
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('band_id');
 
             $table->timestamps();
         });
@@ -34,6 +32,6 @@ class CreateBandUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('band_users');
+        Schema::dropIfExists('band_user');
     }
 }

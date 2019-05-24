@@ -2,6 +2,7 @@ body
 {
 	font-family: Impact, Charcoal, sans-serif;
 	background-color: #adadad;
+    overflow-x: hidden;
 }
 header
 {

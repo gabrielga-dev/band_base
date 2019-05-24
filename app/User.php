@@ -28,8 +28,12 @@ class User extends Authenticatable
     ];
 
 
-    public function bands()
+    public function bandsOwn()
     {
-        return hasMany('App\Band');
+        return $this->hasMany('App\Band', 'owner_id');
+    }
+    public function bandsOf()
+    {
+        return $this->belongsToMany('App\Band')->withPivot('functions');
     }
 }

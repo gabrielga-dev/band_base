@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Band extends Model
 {
     protected $fillable = [
-        'name', 'email', 'views', 'genre', 'active', 'new_page', 'history', 'owner_id'
+        'name', 'email', 'views', 'genre', 'active', 'new_page', 'history', 'owner_id', 'file_name'
     ];
     
     public function medias()
