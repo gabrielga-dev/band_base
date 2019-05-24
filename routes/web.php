@@ -25,3 +25,5 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name(
 
 //ROTAS USER
 Route::resource('usuario','UserController');
+Route::post('/usuario/muda_foto', 'UserController@mudaFoto')->name('usuario.muda_foto');
+Route::get('/usuario/retira_foto/{id}', 'UserController@retiraFoto')->name('usuario.retira_foto');

@@ -2,9 +2,16 @@
  {
  	border: solid 2px black;
  	border-radius: 25px;
+ 	padding: 0px 0px 0px 0px;
+ 	margin: 0px 0px 0px 0px;
  }
  .big-pic
  {
  	width: 250px;
- 	height:  250px;
+ 	height: 250px;
+ }
+ .small-pic
+ {
+ 	width: 35px;
+ 	height: 35px;
  }

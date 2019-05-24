@@ -43,7 +43,13 @@
 					</div>
 				@if(Auth::user())
 					<div class=" col-l col-1 pula-0p5"> 
-						<a href="{{route('usuario.show', Auth::user()->id)}}" class="btn btn-bor btn-bor-rad">Perfil</a>
+						<a href="{{route('usuario.show', Auth::user()->id)}}" class="">
+							@if(Auth::user()->file_name=="NA")
+								<img class="profile-pic small-pic" src="{{url('storage/default_images/user_default.png')}}">
+							@else
+								<img class="profile-pic small-pic" src="{{url('storage/fotos_perfis/'.Auth::user()->file_name)}}">
+							@endif
+						</a>
 					</div>
 					<div class=" col-l col-1 "> 
 						<a href="{{ route('logout') }}" class="btn btn-bor btn-bor-rad">Sair</a>
