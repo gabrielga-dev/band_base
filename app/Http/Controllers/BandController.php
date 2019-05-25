@@ -162,7 +162,13 @@ class BandController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $band = Band::find($id);
+        if($band!=null){
+            if($band->owner_id == Auth::user()->id){
+                $band->delete();
+            }
+        }
+        return redirect()->route('banda.index');
     }
 
     /**
@@ -173,7 +179,12 @@ class BandController extends Controller
      */
     public function delete($id)
     {
-        //
+        $band = Band::find($id);
+        if($band->owner_id != Auth::user()->id){
+            return redirect()->route('banda.index');
+        }else{
+            return view('general_cruds.band.delete', ['band'=>$band]);
+        }
     }
 
 }
