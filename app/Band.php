@@ -17,7 +17,7 @@ class Band extends Model
 
     public function musicians()
     {
-    	return hasMany('App\User');
+    	return belongsToMany('App\User');
     }
 
     public function albums()

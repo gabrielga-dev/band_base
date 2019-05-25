@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Band;
+use App\User;
 use Auth;
 
 class BandController extends Controller
@@ -99,6 +100,23 @@ class BandController extends Controller
         $band->active = true;
         $band->owner_id = Auth::user()->id;
         $band->save();
+
+
+        if($request->e_integrante!=null){
+            $regras = [
+                'funcao'              => 'required|string|min:3|max:100',
+            ];
+            $mensagens = [
+                'funcao.required'     => 'A função é obrigatório',
+                'funcao.string'       => 'A função deve ser um texto válido.',
+                'funcao.min'          => 'A função deve conter, no mínimo, 3 caracteres.',
+                'funcao.max'          => 'A função deve conter, no máximo, 100 caracteres. O seu possui '.strlen($request->nome).' caraceteres.',
+            ];
+            $this->validate($request,$regras,$mensagens);
+
+            $user = User::find(Auth::user()->id);
+            $user->bandsOf()->attach($band,['functions'=>$request->funcao]);
+        }
         return redirect()->route('banda.index');
     }
 

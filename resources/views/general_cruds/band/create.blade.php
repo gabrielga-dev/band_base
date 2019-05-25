@@ -22,6 +22,12 @@
 				<div class="form-input">
 					Gênero:<input type="text" id="genero" name="genero" class="inpt-txt inpt-100" value="{{old('genero')}}">
 				</div>
+				<div class="form-input">
+					Sou integrante:<input type="checkbox" name="e_integrante" id="e_integrante">
+				</div>
+				<div class="form-input">
+					Função:<input type="text" id="funcao" name="funcao" class="inpt-txt inpt-100" value="{{old('funcao')}}">
+				</div>
 			</div>
 			<div class="clear"></div>
 			<div class="linha">

@@ -21,6 +21,9 @@ class CreateBandUserTable extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('band_id');
 
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('band_id')->references('id')->on('bands')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
