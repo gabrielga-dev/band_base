@@ -7,9 +7,13 @@
 		</div>
 	</div>
 	<div class="linha">
-		<div class="col-3 pula-1">
+		<div class="col-l col-1 pula-1">
 			<h4 class="title">Suas Bandas</h4>
 		</div>
+		<div class="col-l col-1">
+			<a href="{{ route('banda.create') }}" class="btn btn-bor btn-bor-rad btn-prosseguir">Cadastrar</a>
+		</div>
+		<div class="clear"></div>
 	</div>
 	<div class="linha">
 		<div class="col-8 pula-1 pula-1-r">
@@ -48,8 +52,20 @@
 								</h4>
 							</div>
 							<div class="col-l col-2">
-								<a href="{{route('banda.show',$band->id)}}" class="btn btn-bor btn-bor-rad btn-prosseguir">Acessar</a>
-								<a href="{{route('banda.delete',$band->id)}}" class="btn btn-bor btn-bor-rad btn-perigo">Excluir</a>
+								<div class="linha">
+									<div class="col-l col-5">
+										<a href="{{route('banda.show',$band->id)}}" class="btn btn-bor btn-bor-rad btn-prosseguir">Acessar</a>
+									</div>
+									<div class="col-l col-5">
+										<a href="{{route('banda.delete',$band->id)}}" class="btn btn-bor btn-bor-rad btn-perigo">Excluir</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+								<div class="linha">
+									<div class="col-10">
+										<a href="#" class="btn btn-bor btn-bor-rad btn-concluir btn-100">Painel de controle</a>
+									</div>
+								</div>
 							</div>
 							<div class="clear"></div>
 						</div>
@@ -65,6 +81,7 @@
 		<div class="col-3 pula-1">
 			<h4 class="title">Bandas que você faz parte</h4>
 		</div>
+		<div class="clear"></div>
 	</div>
 	<div class="linha">
 		<div class="col-8 pula-1 pula-1-r">

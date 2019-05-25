@@ -84,7 +84,6 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $regras = [
             'name'              => 'required|string|min:3|max:75',
             'email'             => 'required|email|string|max:255|unique:users,email,'.Auth::user()->id.',id',
