@@ -13,6 +13,6 @@ class Post extends Model
 
     public function band()
     {
-    	return belongsTo('App\Band');
+    	return $this->belongsTo('App\Band');
     }
 }

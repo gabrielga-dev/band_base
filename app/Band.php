@@ -9,24 +9,33 @@ class Band extends Model
     protected $fillable = [
         'name', 'email', 'views', 'genre', 'active', 'new_page', 'history', 'owner_id', 'file_name'
     ];
+
+    public function posts()
+    {
+        return $this->hasMany('App\Post');
+    }
+    public function social_medias()
+    {
+        return $this->hasMany('App\Social_Media');
+    }
     
     public function medias()
     {
-    	return ('App\Media');
+    	return $this->hasMany('App\Media');
     }
 
     public function musicians()
     {
-    	return belongsToMany('App\User');
+    	return $this->belongsToMany('App\User');
     }
 
     public function albums()
     {
-    	return hasMany('App\Album');
+    	return $this->hasMany('App\Album');
     }
 
     public function musics()
     {
-    	return hasMany('App\Music');
+    	return $this->hasMany('App\Music');
     }
 }

@@ -1,5 +1,5 @@
 @extends('layouts.layout_master')
-@section('title', 'Início')
+@section('title', 'Pesquisando por '.$search)
 @section('content')
 	<div class="linha">
 		<div class=" div-global">
@@ -31,7 +31,7 @@
 											<h4>{{$band->views}} visualizações</h4>
 										</div>
 										<div class=" col-r col-1">
-											<a class="btn-ver btn-bor btn-bor-rad"> Ver </a>
+											<a href="{{route('banda.pagina',$band->id)}}" class="btn-ver btn-bor btn-bor-rad"> Ver </a>
 										</div>
 										<br>
 										<div class="clear"></div>

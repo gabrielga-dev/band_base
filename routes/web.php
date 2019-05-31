@@ -34,3 +34,7 @@ Route::get('/usuario/retira_foto/{id}', 'UserController@retiraFoto')->name('usua
 //ROTAS BANDA
 Route::resource('banda','BandController');
 Route::get('/banda/delete/{id}', 'BandController@delete')->name('banda.delete');
+Route::get('/banda/pagina/{id}', 'BandController@page')->name('banda.pagina');
+
+//ROTAS POST
+Route::resource('post','PostController');

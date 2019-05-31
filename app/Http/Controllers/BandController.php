@@ -12,7 +12,7 @@ class BandController extends Controller
     public function __construct()
     {
         $this->middleware('auth')
-            ->except(['show']);
+            ->except(['show','page']);
     }
 
     /**
@@ -184,6 +184,18 @@ class BandController extends Controller
             return redirect()->route('banda.index');
         }else{
             return view('general_cruds.band.delete', ['band'=>$band]);
+        }
+    }
+
+    public function page($id)
+    {
+        $band = Band::find($id);
+        if($band == null){
+            return redirect()->back();
+        }else{
+            $band->views+=1;
+            $band->update();
+            return view('general_cruds.band.page',['band'=>$band]);
         }
     }
 
