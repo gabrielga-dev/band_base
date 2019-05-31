@@ -41,4 +41,10 @@ Route::post('/banda/muda_foto/{id}', 'BandController@mudaFoto')->name('banda.mud
 Route::get('/banda/retira_foto/{id}', 'BandController@retiraFoto')->name('banda.retira_foto');
 
 //ROTAS POST
-Route::resource('post','PostController');
+//Route::resource('post','PostController');
+Route::post('/post/store/{id}', 'PostController@store')->name('post.store');
+Route::get('/post/show/{id}', 'PostController@show')->name('post.show');
+Route::get('/post/delete/{id}/banda/{idband}', 'PostController@delete')->name('post.delete');
+Route::delete('/post/destroy/{id}/banda/{idband}', 'PostController@destroy')->name('post.destroy');
+Route::get('/post/edit/{id}/banda/{idband}', 'PostController@edit')->name('post.edit');
+Route::put('/post/update/{id}/banda/{idband}', 'PostController@update')->name('post.update');

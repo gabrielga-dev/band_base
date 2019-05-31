@@ -2,8 +2,8 @@
 @section('title', 'Painel de Controle')
 @section('content')
 	<div class="master">
-		<h1 class="title title-center">Painel de controle da banda: {{$band->name}}</h1>
 		<div class="linha bg-grey">
+		<h1 class="title title-center">Painel de controle da banda: {{$band->name}}</h1>
 			<div class="col-l col-8 pula-1 pula-1-r">
 				<fieldset>
 					<legend>Dados da banda</legend>
@@ -61,6 +61,108 @@
 					@endif
 					<p></p>
 				</form>
+			</div>
+			<div class="clear"></div>
+			<br>
+			<!-- =======================================================itens da banda=====================================================-->
+			<!-- =======================================================POST=====================================================-->
+			<div class="col-l col-8 pula-1 pula-1-r">
+				<fieldset>
+					<legend>Itens da banda</legend>
+						<div class="linha">
+							<div class="col-l col-5">
+								<h4 class="title">Posts</h4>
+								<form action="{{route('post.store', $band->id)}}" method="post">
+									{!! csrf_field() !!}
+									<div class="form-input">
+										Título*:<input type="text" id="titulo" name="titulo" class="inpt-txt inpt-100" required="">
+									</div>
+									<div class="form-input">
+										Resumo:<input type="text" id="resumo" name="resumo" class="inpt-txt inpt-100" >
+									</div>
+									<div class="form-input">
+										Conteúdo*:<textarea class="inpt-txt inpt-100" id="conteudo" name="conteudo" required=""></textarea>
+									</div>
+									<button class="btn btn-bor btn-bor-rad btn-concluir">Salvar</button>
+								</form>
+							</div>
+							<div class=" col-l col-4 col">
+								<div class="linha">
+									@if(count($band->posts)<1)
+										<div class="col-10">
+											<h3 class="title title-center">Nenhuma notícia</h3>
+										</div>
+									@else
+										<div class="scroll-div-300 tbl-bor tbl-bor-rad">
+											@foreach($band->posts as $post)
+											<div class="col-8 pula-1">
+												<p>
+													{{$post->title}} <br><br>
+													{{$post->brief}}
+												</p>
+												<div class="col-10">
+													<a href="{{route('post.show', $post->id)}}" class="btn btn-bor btn-bor-rad">Ver mais</a>
+													<a href="{{route('post.edit', [$post->id, $band->id])}}" class="btn btn-bor btn-bor-rad btn-cuidado">Editar</a>
+													<a href="{{route('post.delete', [$post->id, $band->id])}}" class="btn btn-bor btn-bor-rad btn-perigo">Excluir</a>
+												</div>
+												<hr>	
+											</div>
+											@endforeach
+										</div>
+									@endif
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<hr>
+						<!-- =======================================================  =====================================================-->
+						<div class="linha">
+							
+							<div class="col-l col-5">
+								<h4 class="title">Posts</h4>
+								<form>
+									<div class="form-input">
+										Título*:<input type="text" id="titulo" name="titulo" class="inpt-txt inpt-100" required="">
+									</div>
+									<div class="form-input">
+										Resumo:<input type="text" id="resumo" name="resumo" class="inpt-txt inpt-100" >
+									</div>
+									<div class="form-input">
+										Conteúdo*:<textarea class="inpt-txt inpt-100" id="conteudo" name="conteudo" required=""></textarea>
+									</div>
+									<button class="btn btn-bor btn-bor-rad btn-concluir">Salvar</button>
+								</form>
+							</div>
+							<div class=" col-l col-4 col">
+								<div class="linha">
+									@if(count($band->posts)<1)
+										<div class="col-10">
+											<h3 class="title title-center">Nenhuma notícia</h3>
+										</div>
+									@else
+										<div class="scroll-div-300 tbl-bor tbl-bor-rad">
+											@foreach($band->posts as $post)
+											<div class="col-8 pula-1">
+												<p>
+													{{$post->title}} <br><br>
+													{{$post->brief}}
+												</p>
+												<div class="col-10">
+													<a href="{{route('post.show', $post->id)}}" class="btn btn-bor btn-bor-rad">Ver mais</a>
+													<a href="{{route('post.show', $post->id)}}" class="btn btn-bor btn-bor-rad btn-cuidado">Editar</a>
+													<a href="{{route('post.show', $post->id)}}" class="btn btn-bor btn-bor-rad btn-perigo">Excluir</a>
+												</div>
+												<hr>	
+											</div>
+											@endforeach
+										</div>
+									@endif
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div class="clear"></div>
+				</fieldset>
 			</div>
 			<div class="clear"></div>
 			<br>
