@@ -11,6 +11,7 @@
     	<link href="{{ asset('css/titles.css') }}" rel="stylesheet">
     	<link href="{{ asset('css/img.css') }}" rel="stylesheet">
     	<link href="{{ asset('css/tables.css') }}" rel="stylesheet">
+    	<link href="{{ asset('css/colors.css') }}" rel="stylesheet">
 	</head>
 	<body>
 		<header>
@@ -42,7 +43,8 @@
 					</div>
 				@endif
 					<div class=" col-r col-2">
-						<form>
+						<form action="{{route('pesquisa')}}" method="POST">
+							{!!csrf_field()!!}
 							<input type="text" name="pesquisa" id="pesquisa" class="inpt-txt" placeholder="Busque alguma banda...">
 							<input type="submit" value="Buscar" class="btn btn-bor btn-bor-rad">
 						</form>

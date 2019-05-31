@@ -45,4 +45,11 @@
 .btn-perigo
 {
 	background-color: red;
+
+}.btn-ver
+{
+	background-color: blue;
+	color: white;
+	width: 20px;
+	height: 10px;
 }

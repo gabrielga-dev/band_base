@@ -23,6 +23,9 @@ Route::get('/home', function () {
 Auth::routes();
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
+//ROTAS PESQUISA
+Route::post('pesquisa', 'PesquisaController@pesquisa')->name('pesquisa');
+
 //ROTAS USER
 Route::resource('usuario','UserController');
 Route::post('/usuario/muda_foto', 'UserController@mudaFoto')->name('usuario.muda_foto');
