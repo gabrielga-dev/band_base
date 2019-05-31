@@ -7,7 +7,9 @@
 			<div class="col-l col-8 pula-1 pula-1-r">
 				<fieldset>
 					<legend>Dados da banda</legend>
-					<form>
+					<form action="{{ route('banda.update',$band->id) }}" method="POST">
+						{{ method_field('PUT') }}
+						{!! csrf_field() !!}
 						<div class="form-input">
 							Nome*:<input type="text" id="nome" name="nome" class="inpt-txt inpt-100" value="{{$band->name}}" required="">
 						</div>

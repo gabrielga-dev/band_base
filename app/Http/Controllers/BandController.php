@@ -153,7 +153,58 @@ class BandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $regras = [
+            'nome'              => 'required|string|min:3|max:100',
+            'email'             => 'required|email|string|max:255',
+            'genero'            => 'nullable|min:3|max:100',
+        ];
+        $mensagens = [
+            'nome.required'     => 'O nome é obrigatório',
+            'nome.string'       => 'O nome deve ser um texto válido.',
+            'nome.min'          => 'O nome deve conter, no mínimo, 3 caracteres.',
+            'nome.max'          => 'O nome deve conter, no máximo, 100 caracteres. O seu possui '.strlen($request->nome).' caraceteres.',
+
+            'email.required'    => 'O email é obrigatório',
+            'email.email'       => 'O email deve ser um email válido.',
+            'email.string'      => 'O email deve ser um texto válido.',
+            'email.max'         => 'O email deve conter, no máximo, 255 caracteres. O seu possui '.strlen($request->email).' caraceteres.',
+
+            'genero.min'        => 'O gênero deve conter, no mínimo, 3 caracteres.',
+            'genero.max'        => 'O gênero deve conter, no máximo, 100 caracteres. O seu possui '.strlen($request->genero).' caraceteres.',
+        ];
+        $this->validate($request,$regras,$mensagens);
+        $band = Band::find($id);
+
+        $band->name = $request->nome;
+        $band->email = $request->email;
+        if($request->genero == ""){
+            $band->genre = "Não especificado.";
+        }else{
+            $band->genre = $request->genero;
+        }
+        $band->update();
+
+
+        if($request->e_integrante!=null){
+            $regras = [
+                'funcao'              => 'required|string|min:3|max:100',
+            ];
+            $mensagens = [
+                'funcao.required'     => 'A função é obrigatório',
+                'funcao.string'       => 'A função deve ser um texto válido.',
+                'funcao.min'          => 'A função deve conter, no mínimo, 3 caracteres.',
+                'funcao.max'          => 'A função deve conter, no máximo, 100 caracteres. O seu possui '.strlen($request->nome).' caraceteres.',
+            ];
+            $this->validate($request,$regras,$mensagens);
+
+            $band->musicians()->detach(Auth::user()->id);
+
+            $user = User::find(Auth::user()->id);
+            $user->bandsOf()->attach($band,['functions'=>$request->funcao]);
+        }else{
+            $band->musicians()->detach(Auth::user()->id);
+        }
+        return redirect()->route('banda.painel',$id);
     }
 
     /**
