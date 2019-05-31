@@ -54,7 +54,7 @@
 							<div class="col-l col-2">
 								<div class="linha">
 									<div class="col-l col-5">
-										<a href="{{route('banda.show',$band->id)}}" class="btn btn-bor btn-bor-rad btn-prosseguir">Acessar</a>
+										<a href="{{route('banda.pagina',$band->id)}}" class="btn btn-bor btn-bor-rad btn-prosseguir">Acessar</a>
 									</div>
 									<div class="col-l col-5">
 										<a href="{{route('banda.delete',$band->id)}}" class="btn btn-bor btn-bor-rad btn-perigo">Excluir</a>
@@ -63,7 +63,7 @@
 								</div>
 								<div class="linha">
 									<div class="col-10">
-										<a href="#" class="btn btn-bor btn-bor-rad btn-concluir btn-100">Painel de controle</a>
+										<a href="{{route('banda.painel', $band->id)}}" class="btn btn-bor btn-bor-rad btn-concluir btn-100">Painel de controle</a>
 									</div>
 								</div>
 							</div>
@@ -126,7 +126,7 @@
 								</h4>
 							</div>
 							<div class="col-l col-2">
-								<a href="{{route('banda.show',$band->id)}}" class="btn btn-bor btn-bor-rad btn-prosseguir">Acessar</a>
+								<a href="{{route('banda.pagina',$band->id)}}" class="btn btn-bor btn-bor-rad btn-prosseguir">Acessar</a>
 							</div>
 							<div class="clear"></div>
 						</div>

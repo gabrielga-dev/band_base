@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Band;
 use App\User;
+use App\Band_User;
 use Auth;
+use Storage;
 
 class BandController extends Controller
 {
@@ -199,4 +201,74 @@ class BandController extends Controller
         }
     }
 
+    public function control_panel($id)
+    {
+        $band = Band::find($id);
+        if(Auth::user()->id!=$band->owner_id){
+            return redirct()->back();
+        }else{
+            $functions;
+            if(!Auth::user()->imOf($id)){
+                $functions = null;
+            }else{
+                $functions = Band_User::where([
+                    ['user_id', '=', Auth::user()->id],
+                    ['band_id', '=', $id],
+                ])->get()->first()->functions;
+            }
+            return view('general_cruds.band.control_panel', ['band'=>$band, 'functions'=> $functions]);
+        }
+    }
+
+    public function mudaFoto(Request $request, $id)
+    {
+        $band = Band::find($id);
+        if($band == null){
+            return redirect()->back();
+        }else{
+            $regras = [
+                'foto'              => 'required|image|mimes:jpeg,png,jpg|max:2048'
+            ];
+            $mensagens = [
+                'foto.required'     => 'A foto é obrigatória',
+                'foto.image'        =>'A foto deve ser uma imagem (jpeg,png,jpg)',
+                'foto.mimes'        =>'A foto deve ser uma imagem (jpeg,png,jpg)',
+                'foto.max'          =>'A foto excedeu o tamanho máximo aceitável'
+            ];
+            $this->validate($request,$regras,$mensagens);
+
+            if($band->file_name!='NA')
+            {
+                Storage::delete('public/fotos_bandas/'.$band->file_name);
+            }
+            //tratamento dos dados da imagem
+            $imageName = date("Y_m_d-H_i_s-").kebab_case($band->name).'.'.$request->foto->getClientOriginalExtension();
+            $upload = $request->foto->storeAs('public/fotos_bandas', $imageName);
+            if ( !$upload ){
+                return redirect()
+                            ->back()
+                            ->with('error', 'Falha ao fazer upload')
+                            ->withInput();
+            }
+            $band->file_name = $imageName;
+            $band->update();
+            return redirect()->route('banda.painel', $id);
+        }
+    }
+
+    public function retiraFoto($id)
+    {
+        $band = Band::find($id);
+        if($band->file_name=='NA'){
+            return redirect()
+                        ->back()
+                        ->with('error', 'Não é possível remover sua foto de perfil pois ela é a padrão.');
+        }else{
+            Storage::delete('public/fotos_bandas/'.$band->file_name);
+
+            $band->file_name = 'NA';
+            $band->update();
+            return redirect()->route('banda.painel', $id);
+        }
+    }
 }

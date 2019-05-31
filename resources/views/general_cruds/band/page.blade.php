@@ -57,6 +57,44 @@
 							</div>
 						</div>
 					@endif
+					<h3 class="pula-1">Integrantes</h3>
+					<div class="pula-1 linha">
+						<div class="col-l col-1">
+							@if($band->owner->file_name=="NA")
+								<img class="profile-pic medium_2-pic" src="{{url('storage/default_images/user_default.png')}}">
+							@else
+								<img class="profile-pic medium_2-pic" src="{{url('storage/fotos_perfis/'.$band->owner->file_name)}}">
+							@endif
+						</div>
+						<div class="col-l col-2">
+							<h3 class="title">Dono da banda</h3>
+							<h4 class="title">{{$band->owner->name}}</h4>
+						</div>
+						<div class="clear"></div>
+					</div>
+					@if(count($band->musicians)<1)
+						<h3 class="title title-center">Não há integrantes nessa banda</h3>
+					@else
+						<div class="scroll-div-300 tbl-bor tbl-bor-rad">
+							@foreach($band->musicians as $mus)
+								<div class="linhas">
+									<div class="col col-l col-1">
+										@if($band->owner->file_name=="NA")
+											<img class="profile-pic medium_2-pic" src="{{url('storage/default_images/user_default.png')}}">
+										@else
+											<img class="profile-pic medium_2-pic" src="{{url('storage/fotos_perfis/'.$mus->file_name)}}">
+										@endif
+									</div>
+									<div class="col col-l col-2">
+										<h4 class="title">{{$mus->name}}</h4>
+										<h4 class="title">{{$mus->pivot->functions}}</h4>
+									</div>
+									<div class="clear"></div>
+									<hr>
+								</div>
+							@endforeach
+						</div>
+					@endif
 				<br>
 			</div>
 		</div>

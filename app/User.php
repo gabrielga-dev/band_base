@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Auth;
 
 class User extends Authenticatable
 {
@@ -35,5 +36,17 @@ class User extends Authenticatable
     public function bandsOf()
     {
         return $this->belongsToMany('App\Band')->withPivot('functions');
+    }
+
+    public function imOf($idband)
+    {
+        $boo = false;
+        $bands = User::find(Auth::user()->id)->bandsOf;
+        foreach ($bands as $ban) {
+            if($ban->id == $idband){
+                $boo = true;
+            }
+        }
+        return $boo;
     }
 }

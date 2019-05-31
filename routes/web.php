@@ -33,8 +33,12 @@ Route::get('/usuario/retira_foto/{id}', 'UserController@retiraFoto')->name('usua
 
 //ROTAS BANDA
 Route::resource('banda','BandController');
+Route::get('/banda/paine_de_controle/{id}', 'BandController@control_panel')->name('banda.painel');
 Route::get('/banda/delete/{id}', 'BandController@delete')->name('banda.delete');
 Route::get('/banda/pagina/{id}', 'BandController@page')->name('banda.pagina');
+
+Route::post('/banda/muda_foto/{id}', 'BandController@mudaFoto')->name('banda.muda_foto');
+Route::get('/banda/retira_foto/{id}', 'BandController@retiraFoto')->name('banda.retira_foto');
 
 //ROTAS POST
 Route::resource('post','PostController');

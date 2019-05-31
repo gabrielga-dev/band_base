@@ -10,6 +10,11 @@ class Band extends Model
         'name', 'email', 'views', 'genre', 'active', 'new_page', 'history', 'owner_id', 'file_name'
     ];
 
+    public function owner()
+    {
+        return $this->belongsTo('App\User', 'owner_id');
+    }
+
     public function posts()
     {
         return $this->hasMany('App\Post');
@@ -26,7 +31,7 @@ class Band extends Model
 
     public function musicians()
     {
-    	return $this->belongsToMany('App\User');
+    	return $this->belongsToMany('App\User')->withPivot('functions');
     }
 
     public function albums()
