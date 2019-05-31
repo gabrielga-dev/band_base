@@ -17,10 +17,10 @@ class CreatePostsTable extends Migration
             $table->increments('id');
 
             $table->string('title',30);
-            $table->string('brief',100);
+            $table->string('brief',100)->nullable();
             $table->text('content');
 
-            $table->unsignedInteger('band_id')->nullable();
+            $table->unsignedInteger('band_id');
             $table->foreign('band_id')->references('id')->on('bands')->onDelete('cascade');
 
             $table->timestamps();
