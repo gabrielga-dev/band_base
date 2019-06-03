@@ -286,8 +286,9 @@
 
 .col-sm
 {
-	width: 10%;
+	width: 25%;
 	margin-bottom: 15px;
+    text-align:center;
 }
 
 /*=====================================*/

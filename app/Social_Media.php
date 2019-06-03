@@ -15,7 +15,7 @@ class Social_Media extends Model
 
     public function band()
     {
-    	return belongsTo('App\Band');
+    	return $this->belongsTo('App\Band');
     }
 
     public static function is_conhecida($name)

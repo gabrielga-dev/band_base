@@ -37,7 +37,6 @@ class PostController extends Controller
      */
     public function store(Request $request, $id)
     {
-
         $regras = [
             'titulo'              => 'required|string|min:1|max:30',
             'resumo'             => 'nullable|string|max:255',

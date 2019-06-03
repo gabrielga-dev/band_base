@@ -51,3 +51,11 @@ Route::get('/post/delete/{id}/banda/{idband}', 'PostController@delete')->name('p
 Route::delete('/post/destroy/{id}/banda/{idband}', 'PostController@destroy')->name('post.destroy');
 Route::get('/post/edit/{id}/banda/{idband}', 'PostController@edit')->name('post.edit');
 Route::put('/post/update/{id}/banda/{idband}', 'PostController@update')->name('post.update');
+
+//ROTAS SOCIA MEDIA
+//Route::resource('social_media','Social_MediaController');
+Route::post('/social_media/store/{id}', 'Social_MediaController@store')->name('social_media.store');
+Route::get('/social_media/edit/{id}/banda/{idband}', 'Social_MediaController@edit')->name('social_media.edit');
+Route::put('/social_media/update/{id}/banda/{idband}', 'Social_MediaController@update')->name('social_media.update');
+Route::get('/social_media/delete/{id}/banda/{idband}', 'Social_MediaController@delete')->name('social_media.delete');
+Route::delete('/social_media/destroy/{id}/banda/{idband}', 'Social_MediaController@destroy')->name('social_media.destroy');

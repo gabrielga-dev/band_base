@@ -39,7 +39,7 @@
 			</div>
 			<div class="clear"></div>
 			<br>
-			<div class="col-l col-8 pula-1 pula-1-r">
+			<div class="col-l col-4 pula-1">
 				@if($band->file_name == 'NA')
 					<img class="profile-pic big-pic" src="{{url('storage/default_images/band_default.png')}}">
 				@else
@@ -61,6 +61,9 @@
 					@endif
 					<p></p>
 				</form>
+			</div>
+			<div class="col-r col-4 ">
+				<a href="{{route('banda.pagina', $band->id)}}" class="btn btn-bor btn-bor-rad" target="_blank">Página da banda</a>
 			</div>
 			<div class="clear"></div>
 			<br>
@@ -132,7 +135,49 @@
 							<div class="clear"></div>
 						</div>
 						<hr>
-						<!-- =======================================================  =====================================================-->
+						<!-- ======================================================= REDES SOCIAIS =====================================================-->
+						<div class="linha">
+							<div class="col-l col-5">
+								<h4 class="title">Mídias Sociais</h4>
+								<form action="{{route('social_media.store',$band->id)}}" method="post">
+									{!! csrf_field() !!}
+									<div class="form-input">
+										Nome*:<input type="text" id="nome" name="nome" class="inpt-txt inpt-100" required="">
+									</div>
+									<div class="form-input">
+										Link*:<input type="text" id="link" name="link" class="inpt-txt inpt-100" required="">
+									</div>
+									<button class="btn btn-bor btn-bor-rad btn-concluir">Salvar</button>
+								</form>
+							</div>
+							<div class=" col-l col-4 col">
+								<div class="linha">
+									@if(count($band->social_medias)<1)
+										<div class="col-10">
+											<h3 class="title title-center">Nenhuma Mídia Social</h3>
+										</div>
+									@else
+										<div class="scroll-div-300 tbl-bor tbl-bor-rad">
+											@foreach($band->social_medias as $sm)
+											<div class="col-8 pula-1">
+												<p>
+													{{$sm->name}} <br>
+													<a href="{{$sm->url}}" target="_blank" class="link">Acessar</a>
+												</p>
+												<div class="col-10">
+													<a href="{{route('social_media.edit', [$sm->id, $band->id])}}" class="btn btn-bor btn-bor-rad btn-cuidado">Editar</a>
+													<a href="{{route('social_media.delete', [$sm->id, $band->id])}}" class="btn btn-bor btn-bor-rad btn-perigo">Excluir</a>
+												</div>
+												<hr>	
+											</div>
+											@endforeach
+										</div>
+									@endif
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<hr>
 						<div class="clear"></div>
 				</fieldset>
 			</div>
