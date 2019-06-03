@@ -7,6 +7,12 @@
 {	
 	padding: 20px 0px 30px 0px;
 }
+/*=============================================*/
+
+.border
+{
+	border: 1px solid; 
+}
 
 /*=============================================*/
 
@@ -17,7 +23,7 @@
 	margin-bottom: 2.5px;
 	margin-top: 2.5px;
 }
-
+/*=============================================*/
 .scroll-div
 {
 	overflow-y: scroll;
@@ -39,6 +45,18 @@
 	width: 100%;
 	height:500px;
 }
+.scroll-div-x
+{
+	overflow-x: scroll;
+	width: 100%;
+	height:400px;
+}
+.scroll-div-max
+{
+	overflow-y: scroll;
+	width: 100%;
+	max-height:400px;
+}
 
 /*=============================================*/
 
@@ -46,7 +64,12 @@
 {
 	padding: 10px 10px 10px 10px;
 }
+ .col-pad-top
+ {
+ 	padding-top: 40px;
+ }
 
+ 
 .col-l
 {
 	float: left;

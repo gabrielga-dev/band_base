@@ -322,4 +322,26 @@ class BandController extends Controller
             return redirect()->route('banda.painel', $id);
         }
     }
+
+    public function mudaBio(Request $request, $id)
+    {
+        $band = Band::find($id);
+        if($band == null){
+            return redirect()->back();
+        }else{
+            $regras = [
+                'conteudo'              => 'required|string|max:500|min:10'
+            ];
+            $mensagens = [
+                'conteudo.required'     => 'O conteúdo é obrigatório.',
+                'conteudo.string'        =>'O conteúdo deve ser um texto válido.',
+                'conteudo.max'        =>'O conteúdo deve ter, no máximo, 500 caracteres.',
+                'conteudo.min'          =>'O conteúdo deve ter, pelo menos, 10 caracteres.'
+            ];
+            $this->validate($request,$regras,$mensagens);
+            $band->history = $request->conteudo;
+            $band->update();
+            return redirect()->route('banda.painel', $id);
+        }
+    }
 }

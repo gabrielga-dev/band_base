@@ -65,10 +65,10 @@
 			<div class="clear"></div>
 			<br>
 			<!-- =======================================================itens da banda=====================================================-->
-			<!-- =======================================================POST=====================================================-->
 			<div class="col-l col-8 pula-1 pula-1-r">
 				<fieldset>
 					<legend>Itens da banda</legend>
+			<!-- =======================================================POST=====================================================-->
 						<div class="linha">
 							<div class="col-l col-5">
 								<h4 class="title">Posts</h4>
@@ -115,52 +115,24 @@
 							<div class="clear"></div>
 						</div>
 						<hr>
-						<!-- =======================================================  =====================================================-->
+						<!-- ======================================================= BIOGRAFIA =====================================================-->
 						<div class="linha">
 							
-							<div class="col-l col-5">
-								<h4 class="title">Posts</h4>
-								<form>
+							<div class="col-l col-10">
+								<h4 class="title">Biografia</h4>
+								<form action="{{route('banda.muda_bio', $band->id)}}" method="post">
+									{!! csrf_field() !!}
+									{{ method_field('PUT') }}
 									<div class="form-input">
-										Título*:<input type="text" id="titulo" name="titulo" class="inpt-txt inpt-100" required="">
+										Conteúdo*:<br><textarea class="inpt-txt inpt-90" id="conteudo" name="conteudo" rows="17" required="">{{$band->history}}</textarea>
 									</div>
-									<div class="form-input">
-										Resumo:<input type="text" id="resumo" name="resumo" class="inpt-txt inpt-100" >
-									</div>
-									<div class="form-input">
-										Conteúdo*:<textarea class="inpt-txt inpt-100" id="conteudo" name="conteudo" required=""></textarea>
-									</div>
-									<button class="btn btn-bor btn-bor-rad btn-concluir">Salvar</button>
+									<button type="submit" class="btn btn-bor btn-bor-rad btn-concluir">Salvar</button>
 								</form>
-							</div>
-							<div class=" col-l col-4 col">
-								<div class="linha">
-									@if(count($band->posts)<1)
-										<div class="col-10">
-											<h3 class="title title-center">Nenhuma notícia</h3>
-										</div>
-									@else
-										<div class="scroll-div-300 tbl-bor tbl-bor-rad">
-											@foreach($band->posts as $post)
-											<div class="col-8 pula-1">
-												<p>
-													{{$post->title}} <br><br>
-													{{$post->brief}}
-												</p>
-												<div class="col-10">
-													<a href="{{route('post.show', $post->id)}}" class="btn btn-bor btn-bor-rad">Ver mais</a>
-													<a href="{{route('post.show', $post->id)}}" class="btn btn-bor btn-bor-rad btn-cuidado">Editar</a>
-													<a href="{{route('post.show', $post->id)}}" class="btn btn-bor btn-bor-rad btn-perigo">Excluir</a>
-												</div>
-												<hr>	
-											</div>
-											@endforeach
-										</div>
-									@endif
-								</div>
 							</div>
 							<div class="clear"></div>
 						</div>
+						<hr>
+						<!-- =======================================================  =====================================================-->
 						<div class="clear"></div>
 				</fieldset>
 			</div>
