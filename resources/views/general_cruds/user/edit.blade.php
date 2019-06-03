@@ -29,6 +29,9 @@
 				<div class="form-input">
 					Tag:<input type="text" id="tag" name="tag" class="inpt-txt inpt-100" value="{{$user->tag}}">
 				</div>
+				<div class="form-input">
+					Biografia:<textarea class="inpt-txt inpt-100" style="resize: none;" rows="10" id="bio" name="bio">{{$user->history}}</textarea>
+				</div>
 				<div class="clear"></div>
 			</div>
 			<div class="clear"></div>

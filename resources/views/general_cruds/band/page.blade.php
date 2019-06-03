@@ -2,14 +2,14 @@
 @section('title', $band->name)
 @section('content')
 		<div class="linha">
-			<div class="col-l col-1 pula-0p5">
+			<div class="col-l  pula-0p5">
 				@if($band->file_name == 'NA')
-					<img src="{{url('storage/default_images/band_default.png')}}" class="img">
+					<img src="{{url('storage/default_images/band_default.png')}}" class="big-pic">
 				@else
-					<img src="{{url('storage/fotos_bandas/'.$band->file_name)}}" class="img">
+					<img src="{{url('storage/fotos_bandas/'.$band->file_name)}}" class="big-pic">
 				@endif
 			</div>
-			<div class="col-l col-2">
+			<div class="col-l col-2" style="margin-left: 10px;">
 				<h2>{{$band->name}}</h2>
 			</div>
 			<div class="col-r col-2">
@@ -33,7 +33,7 @@
 									{{$post->brief}}
 								</p>
 								<div class="col-1">
-									<a href="{{route('post.show', $post->id)}}" class="btn btn-bor btn-bor-rad">Ver mais</a>
+									<a href="{{route('post.show', $post->id)}}" class="btn btn-bor btn-bor-rad" target="_blank">Ver mais</a>
 								</div>
 								<hr>	
 							</div>
@@ -88,6 +88,9 @@
 									<div class="col col-l col-2">
 										<h4 class="title">{{$mus->name}}</h4>
 										<h4 class="title">{{$mus->pivot->functions}}</h4>
+									</div>
+									<div class="col col-r col-1">
+										<a href="{{route('banda.integrante', [$band->id, $mus->id])}}" class="btn btn-bor btn-bor-rad" target="_blank">Ver Mais</a>
 									</div>
 									<div class="clear"></div>
 									<hr>

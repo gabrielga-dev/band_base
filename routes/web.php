@@ -43,6 +43,8 @@ Route::get('/banda/retira_foto/{id}', 'BandController@retiraFoto')->name('banda.
 
 Route::put('/banda/bio/{id}', 'BandController@mudaBio')->name('banda.muda_bio');
 
+Route::get('/banda/{id}/integrante/{idInteg}', 'BandController@verIntegrante')->name('banda.integrante');
+
 //ROTAS POST
 //Route::resource('post','PostController');
 Route::post('/post/store/{id}', 'PostController@store')->name('post.store');

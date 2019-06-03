@@ -47,9 +47,12 @@
 			<div class="form-input">
 				Nome Artístico:<input type="text" id="artistic_name" name="artistic_name" class="inpt-txt inpt-100" value="{{$user->artistic_name}}" readonly="">
 			</div>
-				<div class="form-input">
-					Tag:<input type="text" id="tag" name="tag" class="inpt-txt inpt-100" value="{{$user->tag}}" readonly="">
-				</div>
+			<div class="form-input">
+				Tag:<input type="text" id="tag" name="tag" class="inpt-txt inpt-100" value="{{$user->tag}}" readonly="">
+			</div>
+			<div class="form-input">
+				Biografia:<textarea class="inpt-txt inpt-100" style="resize: none;" rows="10" readonly="">{{$user->history}}</textarea>
+			</div>
 			<div class="clear"></div>
 		</div>
 		<div class="clear"></div>

@@ -89,7 +89,8 @@ class UserController extends Controller
             'email'             => 'required|email|string|max:255|unique:users,email,'.Auth::user()->id.',id',
             'date_of_birth'     => 'nullable|date|date_format:Y-m-d|before:today',
             'age'               => 'nullable|integer|min:0',
-            'artistic_name'     => 'nullable|string|max:30'
+            'artistic_name'     => 'nullable|string|max:30',
+            'bio'               => 'nullable|string|max:500'
         ];
         $mensagens = [
             'name.required'     => 'O nome é obrigatório',
@@ -112,6 +113,8 @@ class UserController extends Controller
 
             'artistic_name.string'     => 'O nome artístico deve ser um texto válido.',
             'artistic_name.max'          => 'O nome deve ter, no máximo, 30 caracteres. O seu possui '.strlen($request->name).' caraceteres.',
+
+            'bio.max'          => 'A biografia deve conter, no máximo, 500 caracteres. O seu possui '.strlen($request->bio).' caraceteres.',
         ];
         $this->validate($request,$regras,$mensagens);
 
@@ -121,6 +124,7 @@ class UserController extends Controller
         $user->birth_date = $request->date_of_birth;
         $user->age = $request->age;
         $user->artistic_name = $request->artistic_name;
+        $user->history = $request->bio;
         $user->update();
         return redirect()->route('usuario.show', Auth::user()->id);
     }

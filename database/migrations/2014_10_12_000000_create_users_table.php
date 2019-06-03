@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->date('birth_date')->nullable();
             $table->integer('age')->nullable();
             $table->string('artistic_name',30)->nullable();
+            $table->text('history')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
