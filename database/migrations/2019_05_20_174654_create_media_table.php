@@ -17,10 +17,12 @@ class CreateMediaTable extends Migration
             $table->increments('id');
 
             $table->boolean('type');//0->photo 1->video
-            $table->text('url');
-            $table->boolean('is_profile');
-            $table->text('file_name');
-            $table->text('description',250)->nullable();
+            
+            $table->text('url')->nullable();
+
+            $table->text('file_name')->nullable();
+            $table->string('title',50)->nullable();
+            $table->text('description',500)->nullable();
 
             $table->unsignedInteger('band_id')->nullable();
             $table->foreign('band_id')->references('id')->on('bands')->onDelete('cascade');

@@ -54,10 +54,16 @@ Route::delete('/post/destroy/{id}/banda/{idband}', 'PostController@destroy')->na
 Route::get('/post/edit/{id}/banda/{idband}', 'PostController@edit')->name('post.edit');
 Route::put('/post/update/{id}/banda/{idband}', 'PostController@update')->name('post.update');
 
-//ROTAS SOCIA MEDIA
-//Route::resource('social_media','Social_MediaController');
+//ROTAS SOCIAL MEDIA
 Route::post('/social_media/store/{id}', 'Social_MediaController@store')->name('social_media.store');
 Route::get('/social_media/edit/{id}/banda/{idband}', 'Social_MediaController@edit')->name('social_media.edit');
 Route::put('/social_media/update/{id}/banda/{idband}', 'Social_MediaController@update')->name('social_media.update');
 Route::get('/social_media/delete/{id}/banda/{idband}', 'Social_MediaController@delete')->name('social_media.delete');
 Route::delete('/social_media/destroy/{id}/banda/{idband}', 'Social_MediaController@destroy')->name('social_media.destroy');
+
+//ROTAS MEDIA
+Route::post('/media/store/{id}', 'MediaController@store')->name('media.store');
+Route::get('/media/edit/{id}/banda/{idband}', 'MediaController@edit')->name('media.edit');
+Route::put('/media/update/{id}/banda/{idband}', 'MediaController@update')->name('media.update');
+Route::get('/media/delete/{id}/banda/{idband}', 'MediaController@delete')->name('media.delete');
+Route::delete('/media/destroy/{id}/banda/{idband}', 'MediaController@destroy')->name('media.destroy');

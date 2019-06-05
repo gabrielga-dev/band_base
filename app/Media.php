@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Media extends Model
 {
     protected $fillable = [
-        'type', 'url','file_name','description', 'band_id'
+        'type', 'url', 'file_name', 'title', 'description', 'band_id'
     ];
 
     public function band()
     {
-    	return belongsTo('App\Band');
+    	return $this->belongsTo('App\Band');
     }
 }

@@ -31,6 +31,11 @@
 							</form>
 						</div>
 					</div>
+					@if($errors->any())
+						<div class="linha">
+							<p class="title-erro">{{$errors->first()}}</p>
+						</div>
+					@endif
 				</div>
 				<div class="clear"></div>
 			</div>

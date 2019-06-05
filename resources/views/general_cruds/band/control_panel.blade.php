@@ -135,6 +135,63 @@
 							<div class="clear"></div>
 						</div>
 						<hr>
+						<!-- ======================================================= MIDIA =====================================================-->
+						<div class="linha">
+							<div class="col-l col-5">
+								<h4 class="title">Mídias Sociais</h4>
+								<form action="{{route('media.store',$band->id)}}" method="post" enctype="multipart/form-data">
+									{!! csrf_field() !!}
+									<div class="form-input">
+										Tipo*:<br>
+										Foto<input type="radio" id="tipo" name="tipo" value="0" required="" checked="">
+										Vídeo<input type="radio" id="tipo" name="tipo" value="1" required="">
+									</div>
+									<div class="form-input">
+										Link:<input type="text" id="link" name="link" class="inpt-txt inpt-100">
+									</div>
+									<div class="form-input">
+										Arquivo:<input type="file" id="foto" name="foto" class="inpt-txt inpt-100">
+									</div>
+									<div class="form-input">
+										Título:<input type="text" id="titulo" name="titulo" class="inpt-txt inpt-100">
+									</div>
+									<div class="form-input">
+										Descrição:<textarea class="inpt-txt inpt-100" id="desc" name="desc"></textarea>
+									</div>
+									<button class="btn btn-bor btn-bor-rad btn-concluir">Salvar</button>
+								</form>
+							</div>
+							<div class=" col-l col-4 col">
+								<div class="linha">
+									@if(count($band->medias)<1)
+										<div class="col-10">
+											<h3 class="title title-center">Nenhuma Mídia</h3>
+										</div>
+									@else
+										<div class="scroll-div-300 tbl-bor tbl-bor-rad">
+											@foreach($band->medias as $med)
+											<div class="col-8 pula-1">
+												@if($med->type==0)
+													<p>{{$med->title}}:<br><small>{{$med->description}}</small></p>
+												@else
+													<p>
+														<a href="{{$med->url}}" target="_blank" class="link">Acessar</a>
+													</p>
+												@endif
+												<div class="col-10">
+													<a href="{{route('media.edit', [$med->id, $band->id])}}" class="btn btn-bor btn-bor-rad btn-cuidado">Editar</a>
+													<a href="{{route('media.delete', [$med->id, $band->id])}}" class="btn btn-bor btn-bor-rad btn-perigo">Excluir</a>
+												</div>
+												<hr>	
+											</div>
+											@endforeach
+										</div>
+									@endif
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<hr>
 						<!-- ======================================================= REDES SOCIAIS =====================================================-->
 						<div class="linha">
 							<div class="col-l col-5">
