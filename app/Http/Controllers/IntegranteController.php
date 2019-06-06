@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Band;
+use App\Band_User;
 use Auth;
 
 class IntegranteController extends Controller
@@ -78,9 +79,17 @@ class IntegranteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($idinteg, $idband)
     {
-        //
+        $integ = User::find($idinteg);
+        $band =Band::find($idband);
+        if(($band->owner_id != Auth::user()->id)||($this->verifica($idband,$idinteg)!=true))
+        {
+            return redirect ()->back();
+        }else{
+            $inter = Band_User::where('user_id','=',$idinteg)->where('band_id','=',$idband)->first();
+            return view('general_cruds.integrante.edit', ['integ'=>$integ, 'band'=>$band, 'interacao'=>$inter]);
+        }
     }
 
     /**
@@ -90,9 +99,30 @@ class IntegranteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $idband, $idinter)
     {
-        //
+        $integ = User::find($id);
+        $band =Band::find($idband);
+        if(($band->owner_id != Auth::user()->id)||($this->verifica($idband,$id)!=true))
+        {
+            return redirect ()->back();
+        }else{
+            $inter = Band_User::find($idinter);
+            $regras = [
+                'functions'       => 'required|string|min:3|max:100',
+            ];
+            $mensagens = [
+                'functions.required'     => 'As funções são obrigatórias',
+                'functions.string'       => 'As funções devem ser um texto válido.',
+                'functions.min'          => 'As funções devem conter, no mínimo, 3 caracteres.',
+                'functions.max'          => 'As funções devem conter, no máximo, 100 caracteres. As suas possuem '.strlen($request->functions).' caraceteres.',
+            ];
+            $this->validate($request,$regras,$mensagens);
+
+            $inter->functions = $request->functions;
+            $inter->update();
+            return redirect()->route('banda.painel', $idband);
+        }
     }
 
     /**

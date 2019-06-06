@@ -70,6 +70,6 @@ Route::delete('/media/destroy/{id}/banda/{idband}', 'MediaController@destroy')->
 //ROTAS INTEGRANTE
 Route::post('/integrante/store/{id}', 'IntegranteController@store')->name('integrante.store');
 Route::get('/integrante/edit/{id}/banda/{idband}', 'IntegranteController@edit')->name('integrante.edit');
-Route::put('/integrante/update/{id}/banda/{idband}', 'IntegranteController@update')->name('integrante.update');
+Route::put('/integrante/update/{id}/banda/{idband}/funcoes/{idinter}', 'IntegranteController@update')->name('integrante.update');
 Route::get('/integrante/delete/{id}/banda/{idband}', 'IntegranteController@delete')->name('integrante.delete');
 Route::delete('/integrante/destroy/{id}/banda/{idband}', 'IntegranteController@remove')->name('integrante.remove');
