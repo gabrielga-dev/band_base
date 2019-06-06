@@ -79,7 +79,7 @@
 							@foreach($band->musicians as $mus)
 								<div class="linhas">
 									<div class="col col-l col-1">
-										@if($band->owner->file_name=="NA")
+										@if($mus->file_name=="NA")
 											<img class="profile-pic medium_2-pic" src="{{url('storage/default_images/user_default.png')}}">
 										@else
 											<img class="profile-pic medium_2-pic" src="{{url('storage/fotos_perfis/'.$mus->file_name)}}">

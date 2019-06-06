@@ -14,7 +14,7 @@ class BandController extends Controller
     public function __construct()
     {
         $this->middleware('auth')
-            ->except(['show','page']);
+            ->except(['show','page','verIntegrante']);
     }
 
     /**
@@ -174,6 +174,10 @@ class BandController extends Controller
         ];
         $this->validate($request,$regras,$mensagens);
         $band = Band::find($id);
+        
+        if($band->owner_id != Auth::user()->id){
+            return redirect()->back();
+        }
 
         $band->name = $request->nome;
         $band->email = $request->email;
@@ -352,25 +356,22 @@ class BandController extends Controller
         if(($user==null)||($band==null)){
             return redirect()->back();
         }else{
-            if($user->imOf($idband)==false){
-                return redirect()->back();
-            }else{
-                $data=$user->birth_date;
-                if($data!=null){
-                    $data =date('m/d/Y', strtotime($user->birth_date));
-                }
-                //dd($data);
-                return view('general_cruds.band.integrante', [
-                    'nome'      =>$user->name,
-                    'data'      =>$data,
-                    'idade'     =>$user->age,
-                    'nome_art'  =>$user->artistic_name,
-                    'tag'       =>$user->tag,
-                    'band'      =>$band,
-                    'bio'       =>$user->history,
-                    'file_name' =>$user->file_name
-                ]);
+            $data=$user->birth_date;
+            if($data!=null){
+                $data =date('m/d/Y', strtotime($user->birth_date));
             }
+            //dd($data);
+            return view('general_cruds.band.integrante', [
+                'nome'      =>$user->name,
+                'data'      =>$data,
+                'idade'     =>$user->age,
+                'nome_art'  =>$user->artistic_name,
+                'tag'       =>$user->tag,
+                'band'      =>$band,
+                'bio'       =>$user->history,
+                'file_name' =>$user->file_name
+            ]);
+            
         }
     }
 }

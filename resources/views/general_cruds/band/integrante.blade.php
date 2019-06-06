@@ -41,7 +41,7 @@
 			@endif
 		</p>
 
-		@if($band->owner->file_name!="NA")
+		@if($file_name!="NA")
 			<img class="profile-pic medium_2-pic" src="{{url('storage/fotos_perfis/'.$file_name)}}">
 		@endif
 	</div>

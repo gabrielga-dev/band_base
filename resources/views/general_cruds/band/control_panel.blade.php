@@ -143,19 +143,19 @@
 									{!! csrf_field() !!}
 									<div class="form-input">
 										Tipo*:<br>
-										Foto<input type="radio" id="tipo" name="tipo" value="0" required="" checked="">
-										Vídeo<input type="radio" id="tipo" name="tipo" value="1" required="">
+										Foto<input type="radio" id="tipo" name="tipo" value="0" required="" onclick="toggleToFoto()" checked="">
+										Vídeo<input type="radio" id="tipo" name="tipo" value="1" required="" onclick="toggleToVideo()">
 									</div>
-									<div class="form-input">
-										Link:<input type="text" id="link" name="link" class="inpt-txt inpt-100">
+									<div class="form-input" id="form-link" style="display: none;">
+										Link*:<input type="text" id="link" name="link" class="inpt-txt inpt-100">
 									</div>
-									<div class="form-input">
-										Arquivo:<input type="file" id="foto" name="foto" class="inpt-txt inpt-100">
+									<div class="form-input" id="form-file">
+										Arquivo*:<input type="file" id="foto" name="foto" class="inpt-txt inpt-100">
 									</div>
-									<div class="form-input">
+									<div class="form-input" id="form-title">
 										Título:<input type="text" id="titulo" name="titulo" class="inpt-txt inpt-100">
 									</div>
-									<div class="form-input">
+									<div class="form-input" id="form-desc">
 										Descrição:<textarea class="inpt-txt inpt-100" id="desc" name="desc"></textarea>
 									</div>
 									<button class="btn btn-bor btn-bor-rad btn-concluir">Salvar</button>
@@ -181,6 +181,50 @@
 												<div class="col-10">
 													<a href="{{route('media.edit', [$med->id, $band->id])}}" class="btn btn-bor btn-bor-rad btn-cuidado">Editar</a>
 													<a href="{{route('media.delete', [$med->id, $band->id])}}" class="btn btn-bor btn-bor-rad btn-perigo">Excluir</a>
+												</div>
+												<hr>	
+											</div>
+											@endforeach
+										</div>
+									@endif
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<hr>
+						<!-- ======================================================= INTEGRANTE =====================================================-->
+						<div class="linha">
+							<div class="col-l col-5">
+								<h4 class="title">Integrantes</h4>
+								<form action="{{route('integrante.store',$band->id)}}" method="post" enctype="multipart/form-data">
+									{!! csrf_field() !!}
+									<div class="form-input">
+										Tag*:<input type="text" id="tag" name="tag" class="inpt-txt inpt-100" required="">
+									</div>
+									<div class="form-input">
+										Funções*:<input type="text" id="functions" name="functions" class="inpt-txt inpt-100" required="">
+									</div>
+									<button class="btn btn-bor btn-bor-rad btn-concluir">Recrutar</button>
+								</form>
+							</div>
+							<div class=" col-l col-4 col">
+								<div class="linha">
+									@if(count($band->musicians)<1)
+										<div class="col-10">
+											<h3 class="title title-center">Nenhum integrante</h3>
+										</div>
+									@else
+										<div class="scroll-div-300 tbl-bor tbl-bor-rad">
+											@foreach($band->musicians as $mus)
+											<div class="col-8 pula-1">
+												<p>
+													{{$mus->name}} &nbsp;<small>{{$mus->tag}}</small><br>
+													<small>{{$mus->pivot->functions}}</small>
+												</p>
+												<div class="col-10">
+													<a href="{{route('banda.integrante', [$mus->id, $band->id])}}" class="btn btn-bor btn-bor-rad btn-concluir" target="_blank">Ver Mais</a>
+													<a href="{{route('integrante.edit', [$mus->id, $band->id])}}" class="btn btn-bor btn-bor-rad btn-cuidado">Editar</a>
+													<a href="{{route('integrante.delete', [$mus->id, $band->id])}}" class="btn btn-bor btn-bor-rad btn-perigo">Excluir</a>
 												</div>
 												<hr>	
 											</div>
@@ -242,4 +286,7 @@
 			<br>
 		</div>
 	</div>
+@endsection
+@section('scripts_add')
+<script type="text/javascript" src="{{ asset('js/exibe_campos.js') }}"></script>
 @endsection
