@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Media;
 use App\Band;
 use Auth;
+use Storage;
 
 class MediaController extends Controller
 {
@@ -13,26 +14,18 @@ class MediaController extends Controller
     {
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function galeria($idband)
     {
-        //
+        $banda = Band::find($idband);
+        if($banda==null){
+            return redirect()->back();
+        }else{
+            $fotos = $banda->medias->where('type','=',0);
+            $videos = $banda->medias->where('type','=',1);
+            return view('general_cruds.band.galery', ['fotos'=>$fotos, 'videos'=>$videos, 'banda'=>$banda]);
+        }
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -193,6 +186,7 @@ class MediaController extends Controller
         $med = Media::find($id);
         if($med!=null){
             if($med->band->owner_id == Auth::user()->id){
+                Storage::delete('public/media/'.$med->file_name);
                 $med->delete();
             }
         }

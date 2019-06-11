@@ -138,7 +138,7 @@
 						<!-- ======================================================= MIDIA =====================================================-->
 						<div class="linha">
 							<div class="col-l col-5">
-								<h4 class="title">Mídias Sociais</h4>
+								<h4 class="title">Mídias (Fotos e Vídeos)</h4>
 								<form action="{{route('media.store',$band->id)}}" method="post" enctype="multipart/form-data">
 									{!! csrf_field() !!}
 									<div class="form-input">

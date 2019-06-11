@@ -19,6 +19,13 @@
 		</div>
 		<div class="linha">
 			<div class=" col bg-grey pula-0p5 pula-0p5-r">
+				<div class="linha">
+					<div class="col-l col-5">
+						<a href="{{route('media.galeria',$band->id)}}" class="btn btn-bor btn-bor-rad">Galeria</a>
+						<a href="#" class="btn btn-bor btn-bor-rad">Eventos</a>
+					</div>
+					<div class="clear"></div>
+				</div>
 				<h2 class="pula-1">Notícias</h2>
 					@if(count($band->posts)<1)
 						<div class="col-10">

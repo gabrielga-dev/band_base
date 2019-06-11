@@ -34,6 +34,7 @@
 									</div>
 								@endif
 								<button class="btn btn-bor btn-bor-rad btn-concluir">Atualizar</button>
+								<a href="{{route('banda.painel', $idband)}}" class="btn btn-bor btn-bor-rad btn-perigo">Cancelar</a>
 							</form>
 						</div>
 					</div>
