@@ -16,7 +16,7 @@
 			@else
 				@foreach($fotos as $foto)
 					<div class="col-l col-2">
-						<a href="#">
+						<a target="_blank" href="{{route('media.show',[$foto->id,$banda->id])}}">
 							<img src="{{url('storage/media/'.$foto->file_name)}}" alt="{{$foto->title}}" class="big-pic">
 						</a>
 					</div>

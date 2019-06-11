@@ -192,6 +192,79 @@
 							<div class="clear"></div>
 						</div>
 						<hr>
+						<!-- ======================================================= EVENTOS =====================================================-->
+						<div class="linha">
+							<div class="col-l col-5">
+								<h4 class="title">Eventos</h4>
+								<form action="{{route('evento.store', $band->id)}}" method="post">
+									{!! csrf_field() !!}
+									<div class="form-input">
+										Etapas*:<br>
+										Dados do Evento<input type="radio" id="tipo" name="tipo" value="0" required="" onclick="toggleToDados()" checked="">
+										Dados do Local<input type="radio" id="tipo" name="tipo" value="1" required="" onclick="toggleToEndereco()">
+									</div>
+									<div id="form-dados_1">
+										<div class="form-input">
+											Nome*:<input type="text" id="nome" name="nome" class="inpt-txt inpt-100" required="">
+										</div>
+										<div class="form-input">
+											Data*:<input type="date" id="data" name="data" class="inpt-txt inpt-100" required="">
+										</div>
+										<div class="form-input">
+											Horário*:<input type="time" id="horario" name="horario" class="inpt-txt inpt-100" required="">
+										</div>
+										<div class="form-input">
+											Link para o Evento*:<input type="text" id="link" name="link" class="inpt-txt inpt-100" required="">
+										</div>
+									</div>
+									<div id="form-dados_2" style="display: none;">
+										<div class="form-input">
+											Nome do local*:<input type="text" id="nome_local" name="nome_local" class="inpt-txt inpt-100">
+										</div>
+										<div class="form-input">
+											Rua*:<input type="text" id="rua" name="rua" class="inpt-txt inpt-100" required="">
+										</div>
+										<div class="form-input">
+											Complemento:<input type="text" id="complemento" name="complemento" class="inpt-txt inpt-100">
+										</div>
+										<div class="form-input">
+											Bairro*:<input type="text" id="bairro" name="bairro" class="inpt-txt inpt-100" required="">
+										</div>
+										<div class="form-input">
+											Cidade*:<input type="text" id="cidade" name="cidade" class="inpt-txt inpt-100" required="">
+										</div>
+										<div class="form-input">
+											Estado*:<input type="text" id="estado" name="estado" class="inpt-txt inpt-100" required="">
+										</div>
+									</div>
+									<button class="btn btn-bor btn-bor-rad btn-concluir">Salvar</button>
+								</form>
+							</div>
+							<div class=" col-l col-4 col">
+								<div class="linha">
+									@if(count($band->events)<1)
+										<div class="col-10">
+											<h3 class="title title-center">Nenhum Evento</h3>
+										</div>
+									@else
+										<div class="scroll-div-300 tbl-bor tbl-bor-rad">
+											@foreach($band->events as $event)
+											<div class="col-8 pula-1">
+													<p>{{$event->name}}</p>
+												<div class="col-10">
+													<a href="{{route('evento.edit', [$event->id, $band->id])}}" class="btn btn-bor btn-bor-rad btn-cuidado">Editar</a>
+													<a href="{{route('evento.delete', [$event->id, $band->id])}}" class="btn btn-bor btn-bor-rad btn-perigo">Excluir</a>
+												</div>
+												<hr>	
+											</div>
+											@endforeach
+										</div>
+									@endif
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<hr>
 						<!-- ======================================================= INTEGRANTE =====================================================-->
 						<div class="linha">
 							<div class="col-l col-5">
@@ -288,5 +361,6 @@
 	</div>
 @endsection
 @section('scripts_add')
+<script type="text/javascript" src="{{ asset('js/exibe_campos.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/exibe_campos.js') }}"></script>
 @endsection

@@ -41,6 +41,11 @@ class Band extends Model
 
     public function musics()
     {
-    	return $this->hasMany('App\Music');
+        return $this->hasMany('App\Music');
+    }
+
+    public function events()
+    {
+        return $this->hasMany('App\Event');
     }
 }

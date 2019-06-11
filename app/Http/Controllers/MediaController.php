@@ -12,7 +12,7 @@ class MediaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['show', 'galeria']);
     }
 
     public function galeria($idband)
@@ -103,9 +103,15 @@ class MediaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $idband)
     {
-        //
+        $banda = Band::find($idband);
+        $foto = Media::find($id);
+        if(($banda==null)||($foto==null)||($foto->type==1)){
+            return redirect()->back();
+        }else{
+            return view('general_cruds.media.show', ['foto'=>$foto, 'banda'=>$banda]);
+        }    
     }
 
     /**

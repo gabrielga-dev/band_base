@@ -8,7 +8,7 @@
 					<h1 class="title">{{$post->title}}</h1>
 				</div>
 				<div class=" col-l col-1">
-					<a href="{{route('banda.pagina',$post->band->id)}}" class="btn btn-bor btn-bor-rad">Voltar</a>
+					<button  onclick="window.close()" class="btn btn-bor btn-bor-rad ">Fechar</button>
 				</div>
 				<div class="clear"></div>
 			</div>
