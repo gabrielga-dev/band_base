@@ -127,6 +127,8 @@
 							</div>
 							<div class="col-l col-2">
 								<a href="{{route('banda.pagina',$band->id)}}" class="btn btn-bor btn-bor-rad btn-prosseguir">Acessar</a>
+								<br><br><br>
+								<a href="{{route('band_user.delete', [$band->id])}}" class="btn btn-bor btn-bor-rad btn-perigo">Sair da Banda</a>
 							</div>
 							<div class="clear"></div>
 						</div>

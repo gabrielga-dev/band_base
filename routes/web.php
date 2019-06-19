@@ -84,3 +84,7 @@ Route::get('/integrante/edit/{id}/banda/{idband}', 'IntegranteController@edit')-
 Route::put('/integrante/update/{id}/banda/{idband}/funcoes/{idinter}', 'IntegranteController@update')->name('integrante.update');
 Route::get('/integrante/delete/{id}/banda/{idband}', 'IntegranteController@delete')->name('integrante.delete');
 Route::delete('/integrante/destroy/{id}/banda/{idband}', 'IntegranteController@remove')->name('integrante.remove');
+
+//ROTAS BANDA-USUARIO
+Route::get('/integrante-banda/sair/{id}', 'Band_UserController@delete')->name('band_user.delete');
+Route::delete('/integrante-banda/sair/confirmado/{id}', 'Band_UserController@destroy')->name('band_user.destroy');
