@@ -11,8 +11,19 @@ class EventController extends Controller
 {
 	public function __construct()
     {
-        $this->middleware('auth')->except(['']);
+        $this->middleware('auth')->except(['index']);
     }
+
+    public function index($idband)
+    {
+        $band = Band::find($idband);
+        if($band==null){
+            return redirect()->back();
+        }else{
+            return view('general_cruds.event.index', ['band'=>$band]);
+        }
+    }
+
     public function store(Request $request, $idband)
     {
     	$band = Band::find($idband);
@@ -26,7 +37,7 @@ class EventController extends Controller
             'link'              => 'required|string',
             'nome_local'        => 'nullable|string|min:2|max:75',
             'rua'              	=> 'required|string|min:2|max:75',
-            'complemento'       => 'nullable|string|min:2|max:75',
+            'complemento'       => 'nullable|string|min:1|max:75',
             'bairro'            => 'required|string|min:2|max:75',
             'cidade'            => 'required|string|min:2|max:75',
             'estado'            => 'required|string|min:2|max:75',

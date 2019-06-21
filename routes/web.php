@@ -76,7 +76,7 @@ Route::get('/evento/delete/{id}/banda/{idband}', 'EventController@delete')->name
 Route::delete('/evento/destroy/{id}/banda/{idband}', 'EventController@destroy')->name('evento.destroy');
 Route::get('/evento/edit/{id}/banda/{idband}', 'EventController@edit')->name('evento.edit');
 Route::put('/evento/update/{id}/banda/{idband}', 'EventController@update')->name('evento.update');
-// Route::get('/media/galeria/banda/{idband}', 'MediaController@galeria')->name('media.galeria');
+Route::get('/evento/banda/{id}', 'EventController@index')->name('evento.index');
 
 //ROTAS INTEGRANTE
 Route::post('/integrante/store/{id}', 'IntegranteController@store')->name('integrante.store');

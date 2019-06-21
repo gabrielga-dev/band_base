@@ -21,8 +21,8 @@
 			<div class=" col bg-grey pula-0p5 pula-0p5-r">
 				<div class="linha">
 					<div class="col-l col-5">
-						<a href="{{route('media.galeria',$band->id)}}" class="btn btn-bor btn-bor-rad">Galeria</a>
-						<a href="#" class="btn btn-bor btn-bor-rad">Eventos</a>
+						<a href="{{route('media.galeria',$band->id)}}" class="btn btn-bor btn-bor-rad" target="_blank">Galeria</a>
+						<a href="{{route('evento.index', $band->id)}}" class="btn btn-bor btn-bor-rad" target="_blank">Eventos</a>
 					</div>
 					<div class="clear"></div>
 				</div>
