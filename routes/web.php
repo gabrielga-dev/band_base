@@ -33,6 +33,7 @@ Route::get('/usuario/retira_foto/{id}', 'UserController@retiraFoto')->name('usua
 
 //ROTAS BANDA
 Route::resource('banda','BandController');
+Route::get('/banda/musicas/{id}', 'BandController@musicas')->name('banda.musicas');
 Route::get('/banda/painel_de_controle/{id}', 'BandController@control_panel')->name('banda.painel');
 Route::get('/banda/delete/{id}', 'BandController@delete')->name('banda.delete');
 Route::get('/banda/pagina/{id}', 'BandController@page')->name('banda.pagina');

@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $eventos = Event::get();
+        $eventos = Event::whereDate('date', '>=', date('Y-m-d'))->sortBy('date');
         return view('welcome', ['eventos'=>$eventos]);
     }
 }

@@ -14,7 +14,7 @@ class BandController extends Controller
     public function __construct()
     {
         $this->middleware('auth')
-            ->except(['show','page','verIntegrante']);
+            ->except(['show','page','verIntegrante', 'musicas']);
     }
 
     /**
@@ -372,6 +372,16 @@ class BandController extends Controller
                 'file_name' =>$user->file_name
             ]);
             
+        }
+    }
+
+    public function musicas($idband)
+    {
+        $band = Band::find($idband);
+        if($band==null){
+            return redirect()->back();
+        }else{
+            return view('general_cruds.band.musics', ['band'=>$band]);
         }
     }
 }
