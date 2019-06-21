@@ -93,3 +93,4 @@ Route::delete('/integrante-banda/sair/confirmado/{id}', 'Band_UserController@des
 Route::post('/album/store/{id}', 'AlbumController@store')->name('album.store');
 Route::get('/album/edit/{id}', 'AlbumController@edit')->name('album.edit');
 Route::put('/album/update/{id}', 'AlbumController@update')->name('album.update');
+Route::get('/album/delete/{id}', 'AlbumController@delete')->name('album.delete');

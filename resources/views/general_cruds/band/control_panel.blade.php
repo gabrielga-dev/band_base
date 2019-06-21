@@ -243,7 +243,7 @@
 												</div>
 												<div class="col-10">
 													<a href="{{route('album.edit', $album->id)}}" class="btn btn-bor btn-bor-rad btn-cuidado">Editar</a>
-													<a href="#" class="btn btn-bor btn-bor-rad btn-perigo">Excluir</a>
+													<a href="{{route('album.delete', $album->id)}}" class="btn btn-bor btn-bor-rad btn-perigo">Excluir</a>
 												</div>
 												<hr>	
 											</div>

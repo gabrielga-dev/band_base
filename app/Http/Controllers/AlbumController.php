@@ -171,6 +171,17 @@ class AlbumController extends Controller
         }
     }
 
+    public function delete($idband)
+    {
+        $album = Album::find($id);
+        $band = Band::find($album->band_id);
+        if(($album==null)||($band==null)||($band->owner_id!=Auth::user()->id)){
+            return redirect()->back();
+        }else{
+            return view("general_cruds.album.delete", ['album'=>$album]);
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      *
