@@ -17,7 +17,7 @@ class CreateMusicsTable extends Migration
             $table->increments('id');
             $table->string('name',35);
             $table->string('genre',100)->nullable();
-            $table->integer('number')->nullable();
+            //$table->integer('number')->nullable();
 
             $table->unsignedInteger('album_id')->nullable();
             $table->foreign('album_id')->references('id')->on('albums')->onDelete('cascade');

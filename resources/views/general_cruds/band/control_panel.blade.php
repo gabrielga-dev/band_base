@@ -255,6 +255,73 @@
 							<div class="clear"></div>
 						</div>
 						<hr>
+						<!-- ======================================================= MÚSICAS =====================================================-->
+						<div class="linha">
+							<div class="col-l col-5">
+								<h4 class="title">Músicas</h4>
+								<form action="{{route('musica.store',$band->id)}}" method="post" enctype="multipart/form-data">
+									{!! csrf_field() !!}
+									<div class="form-input">
+										Nome*:<input type="text" id="nome" name="nome" class="inpt-txt inpt-100">
+									</div>
+									<div class="form-input" >
+										Gênero*:<input type="text" id="genero" name="genero" class="inpt-txt inpt-100">
+									</div>
+									<div class="form-input" >
+										@if(count($band->albums)==0)
+											<p class="title title-center title-erro">Não há, pelo menos, um álbum para que o cadastro de músicas seja realizado</p>
+										@else
+											<div class="form-input">
+												Álbum*:<select class="inpt-txt inpt-100" name="album" id="album">
+													@foreach($band->albums as $album)
+														<option value="{{$album->id}}">{{$album->name.' - '.date('d/m/Y',strtotime($album->date))}}</option>
+													@endforeach
+												</select>
+											</div>
+											<button class="btn btn-bor btn-bor-rad btn-concluir">Salvar</button>
+										@endif
+									</div>
+								</form>
+							</div>
+							<div class=" col-l col-4 col">
+								<div class="linha">
+									@if(count($band->musics)<1)
+										<div class="col-10">
+											<h3 class="title title-center">Nenhuma música</h3>
+										</div>
+									@else
+										<div class="scroll-div-300 tbl-bor tbl-bor-rad">
+											@foreach($band->musics as $musica)
+											<div class="col-8 pula-1">
+												<div class="linha">
+													<div class="col-l col-10">
+														<h3 class="title center">{{$musica->name}}</h3>
+													</div>
+													<div class="clear"></div>
+												</div>
+												<div class="linha">
+													<div class="col-l col-5">
+														<h4 class="title">{{$musica->album->name}} - {{date('d/m/Y', strtotime($musica->album->launch_date))}}</h4>
+													</div>
+													<div class="col-l col-5">
+														<h4 class="title">{{$musica->album->recorder}}</h4>
+													</div>
+													<div class="clear"></div>
+												</div>
+												<div class="col-10">
+													<a href="{{route('musica.edit', $musica->id)}}" class="btn btn-bor btn-bor-rad btn-cuidado">Editar</a>
+													<a href="{{route('musica.delete', $musica->id)}}" class="btn btn-bor btn-bor-rad btn-perigo">Excluir</a>
+												</div>
+												<hr>	
+											</div>
+											@endforeach
+										</div>
+									@endif
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<hr>
 						<!-- ======================================================= EVENTOS =====================================================-->
 						<div class="linha">
 							<div class="col-l col-5">

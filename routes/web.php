@@ -95,3 +95,10 @@ Route::get('/album/edit/{id}', 'AlbumController@edit')->name('album.edit');
 Route::put('/album/update/{id}', 'AlbumController@update')->name('album.update');
 Route::get('/album/delete/{id}', 'AlbumController@delete')->name('album.delete');
 Route::delete('/album/destroy/{id}', 'AlbumController@destroy')->name('album.destroy');
+
+//ROTAS MUSICAS
+Route::post('/musica/store/{id}', 'MusicController@store')->name('musica.store');
+Route::get('/musica/edit/{id}', 'MusicController@edit')->name('musica.edit');
+Route::put('/musica/update/{id}', 'MusicController@update')->name('musica.update');
+Route::get('/musica/delete/{id}', 'MusicController@delete')->name('musica.delete');
+Route::delete('/musica/destroy/{id}', 'MusicController@destroy')->name('musica.destroy');

@@ -13,11 +13,11 @@ class Music extends Model
 
     public function album()
     {
-    	return belongsTo('App\Album');
+    	return $this->belongsTo('App\Album');
     }
 
     public function band()
     {
-    	return belongsTo('App\Band');
+    	return $this->belongsTo('App\Band');
     }
 }

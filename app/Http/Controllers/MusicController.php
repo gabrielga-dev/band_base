@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Band;
 use App\Album;
+use App\Music;
 use Auth;
 
-class AlbumController extends Controller
+class MusicController extends Controller
 {
     public function __contruct()
     {
-        $this->middleware('auth')->except(['index']);
+        $this->middleware('auth')->except([]);
     }
     /**
      * Display a listing of the resource.
@@ -49,10 +50,8 @@ class AlbumController extends Controller
 
             $regras = [
                 'nome'            => 'required|string|min:3|max:35',
-                'data'            => 'required|date',
-                'gravadora'       => 'required|string|min:2|max:50',
                 'genero'          => 'required|string|min:3|max:100',
-                'link'            => 'nullable',
+                'album'            => 'required',
             ];
             $mensagens = [
                 'nome.required'     => 'O nome é obrigatório',
@@ -60,32 +59,35 @@ class AlbumController extends Controller
                 'nome.min'          => 'O nome deve conter, no mínimo, 3 caracteres.',
                 'nome.max'          => 'O nome deve conter, no máximo, 35 caracteres. O seu possui '.strlen($request->nome).' caraceteres.',
 
-                'gravadora.required'     => 'A gravadora é obrigatória.',
-                'gravadora.string'       => 'A gravadora deve ser um texto válido.',
-                'gravadora.min'          => 'A gravadora deve conter, no mínimo, 2 caracteres.',
-                'gravadora.max'          => 'A gravadora deve conter, no máximo, 50 caracteres. O seu possui '.strlen($request->gravadora).' caraceteres.',
-
-                'data.required'     => 'A data é obrigatória.',
-                'data.date'       => 'A data deve ser uma data válida.',
-
                 'genero.required'       => 'O gênero é obrigatório.',
                 'genero.string'        => 'O gênero deve ser um texto válido.',
                 'genero.min'        => 'O gênero deve conter, no mínimo, 3 caracteres.',
                 'genero.max'        => 'O gênero deve conter, no máximo, 100 caracteres. O seu possui '.strlen($request->genero).' caraceteres.',
+
+                'album.required'       => 'O álbum é obrigatório.',
             ];
             $this->validate($request,$regras,$mensagens);
 
-            $album = new Album();
-            $album->name =$request->nome;
-            $album->launch_date =$request->data;
-            $album->recorder =$request->gravadora;
-            $album->genre =$request->genero;
-            $album->buy_url =$request->link;
-            $album->band_id =$idband;
+            $albumsBand = $band->albums;
+            $boo = false;
+            foreach ($albumsBand as $alb){
+                if($alb->id == $request->album){
+                    $boo = true;
+                }
+            }
+            if($boo==false){
+                return redirect()->back();
+            }else{
+                $musica = new Music();
+                $musica->name =$request->nome;
+                $musica->genre =$request->genero;
+                $musica->album_id =$request->album;
+                $musica->band_id =$idband;
 
-            $album->save();
+                $musica->save();
 
-            return redirect()->route('banda.painel', $idband);
+                return redirect()->route('banda.painel', $idband);
+            }
         }
     }
 
@@ -108,12 +110,12 @@ class AlbumController extends Controller
      */
     public function edit($id)
     {
-        $album = Album::find($id);
-        $band = Band::find($album->band_id);
-        if(($album==null)||($band==null)||($band->owner_id!=Auth::user()->id)){
+        $musica = Music::find($id);
+        $band = Band::find($musica->band_id);
+        if(($musica==null)||($band==null)||($band->owner_id!=Auth::user()->id)){
             return redirect()->back();
         }else{
-            return view('general_cruds.album.edit', ['album'=>$album]);
+            return view('general_cruds.music.edit', ['musica'=>$musica, 'band'=>$band]);
         }
     }
 
@@ -126,17 +128,16 @@ class AlbumController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $album = Album::find($id);
-        $band = Band::find($album->band_id);
-        if(($album==null)||($band==null)||($band->owner_id!=Auth::user()->id)){
+        $musica = Music::find($id);
+        $band = Band::find($musica->band_id);
+        if(($musica==null)||($band==null)||($band->owner_id!=Auth::user()->id)){
             return redirect()->back();
         }else{
+
             $regras = [
                 'nome'            => 'required|string|min:3|max:35',
-                'data'            => 'required|date',
-                'gravadora'       => 'required|string|min:2|max:50',
                 'genero'          => 'required|string|min:3|max:100',
-                'link'            => 'nullable',
+                'album'            => 'required',
             ];
             $mensagens = [
                 'nome.required'     => 'O nome é obrigatório',
@@ -144,41 +145,44 @@ class AlbumController extends Controller
                 'nome.min'          => 'O nome deve conter, no mínimo, 3 caracteres.',
                 'nome.max'          => 'O nome deve conter, no máximo, 35 caracteres. O seu possui '.strlen($request->nome).' caraceteres.',
 
-                'gravadora.required'     => 'A gravadora é obrigatória.',
-                'gravadora.string'       => 'A gravadora deve ser um texto válido.',
-                'gravadora.min'          => 'A gravadora deve conter, no mínimo, 2 caracteres.',
-                'gravadora.max'          => 'A gravadora deve conter, no máximo, 50 caracteres. O seu possui '.strlen($request->gravadora).' caraceteres.',
-
-                'data.required'     => 'A data é obrigatória.',
-                'data.date'       => 'A data deve ser uma data válida.',
-
                 'genero.required'       => 'O gênero é obrigatório.',
                 'genero.string'        => 'O gênero deve ser um texto válido.',
                 'genero.min'        => 'O gênero deve conter, no mínimo, 3 caracteres.',
                 'genero.max'        => 'O gênero deve conter, no máximo, 100 caracteres. O seu possui '.strlen($request->genero).' caraceteres.',
+
+                'album.required'       => 'O álbum é obrigatório.',
             ];
             $this->validate($request,$regras,$mensagens);
 
-            $album->name =$request->nome;
-            $album->launch_date =$request->data;
-            $album->recorder =$request->gravadora;
-            $album->genre =$request->genero;
-            $album->buy_url =$request->link;
+            $albumsBand = $band->albums;
+            $boo = false;
+            foreach ($albumsBand as $alb){
+                if($alb->id == $request->album){
+                    $boo = true;
+                }
+            }
+            if($boo==false){
+                return redirect()->back();
+            }else{
+                $musica->name =$request->nome;
+                $musica->genre =$request->genero;
+                $musica->album_id =$request->album;
 
-            $album->update();
+                $musica->update();
 
-            return redirect()->route('banda.painel', $band->id);
+                return redirect()->route('banda.painel', $band->id);
+            }
         }
     }
 
     public function delete($id)
     {
-        $album = Album::find($id);
-        $band = Band::find($album->band_id);
-        if(($album==null)||($band==null)||($band->owner_id!=Auth::user()->id)){
+        $musica = Music::find($id);
+        $band = Band::find($musica->band_id);
+        if(($musica==null)||($band==null)||($band->owner_id!=Auth::user()->id)){
             return redirect()->back();
         }else{
-            return view("general_cruds.album.delete", ['album'=>$album]);
+            return view("general_cruds.music.delete", ['music'=>$musica]);
         }
     }
 
@@ -190,13 +194,14 @@ class AlbumController extends Controller
      */
     public function destroy($id)
     {
-        $album = Album::find($id);
-        $band = Band::find($album->band_id);
-        if(($album==null)||($band==null)||($band->owner_id!=Auth::user()->id)){
+        $musica = Music::find($id);
+        $band = Band::find($musica->band_id);
+        if(($musica==null)||($band==null)||($band->owner_id!=Auth::user()->id)){
             return redirect()->back();
         }else{
-            $album->delete();
+            $musica->delete();
             return redirect()->route('banda.painel', $band->id);
         }
+
     }
 }
