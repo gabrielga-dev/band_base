@@ -94,3 +94,4 @@ Route::post('/album/store/{id}', 'AlbumController@store')->name('album.store');
 Route::get('/album/edit/{id}', 'AlbumController@edit')->name('album.edit');
 Route::put('/album/update/{id}', 'AlbumController@update')->name('album.update');
 Route::get('/album/delete/{id}', 'AlbumController@delete')->name('album.delete');
+Route::delete('/album/destroy/{id}', 'AlbumController@destroy')->name('album.destroy');

@@ -173,7 +173,7 @@ class AlbumController extends Controller
 
     public function delete($idband)
     {
-        $album = Album::find($id);
+        $album = Album::find($idband);
         $band = Band::find($album->band_id);
         if(($album==null)||($band==null)||($band->owner_id!=Auth::user()->id)){
             return redirect()->back();
@@ -190,6 +190,13 @@ class AlbumController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $album = Album::find($id);
+        $band = Band::find($album->band_id);
+        if(($album==null)||($band==null)||($band->owner_id!=Auth::user()->id)){
+            return redirect()->back();
+        }else{
+            $album->delete();
+            return redirect()->route('banda.painel', $band->id);
+        }
     }
 }
