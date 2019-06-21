@@ -23,6 +23,7 @@
 					<div class="col-l col-5">
 						<a href="{{route('media.galeria',$band->id)}}" class="btn btn-bor btn-bor-rad" target="_blank">Galeria</a>
 						<a href="{{route('evento.index', $band->id)}}" class="btn btn-bor btn-bor-rad" target="_blank">Eventos</a>
+						<a href="#" class="btn btn-bor btn-bor-rad" target="_blank">Álbuns e músicas</a>
 					</div>
 					<div class="clear"></div>
 				</div>

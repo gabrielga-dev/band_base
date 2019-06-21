@@ -192,6 +192,69 @@
 							<div class="clear"></div>
 						</div>
 						<hr>
+						<!-- ======================================================= ÁLBUNS =====================================================-->
+						<div class="linha">
+							<div class="col-l col-5">
+								<h4 class="title">Álbuns</h4>
+								<form action="{{route('album.store',$band->id)}}" method="post" enctype="multipart/form-data">
+									{!! csrf_field() !!}
+									<div class="form-input">
+										Nome*:<input type="text" id="nome" name="nome" class="inpt-txt inpt-100">
+									</div>
+									<div class="form-input" >
+										Data de Lançamento*:<input type="date" id="data" name="data" class="inpt-txt inpt-100">
+									</div>
+									<div class="form-input">
+										Gravadora:<input type="text" id="gravadora" name="gravadora" class="inpt-txt inpt-100">
+									</div>
+									<div class="form-input">
+										Gênero*:<input type="text" id="genero" name="genero" class="inpt-txt inpt-100">
+									</div>
+									<div class="form-input">
+										Link:<input type="text" id="link" name="link" class="inpt-txt inpt-100">
+									</div>
+									<button class="btn btn-bor btn-bor-rad btn-concluir">Salvar</button>
+								</form>
+							</div>
+							<div class=" col-l col-4 col">
+								<div class="linha">
+									@if(count($band->albums)<1)
+										<div class="col-10">
+											<h3 class="title title-center">Nenhum álbum</h3>
+										</div>
+									@else
+										<div class="scroll-div-300 tbl-bor tbl-bor-rad">
+											@foreach($band->albums as $album)
+											<div class="col-8 pula-1">
+												<div class="linha">
+													<div class="col-l col-10">
+														<h3 class="title center">{{$album->name}}</h3>
+													</div>
+													<div class="clear"></div>
+												</div>
+												<div class="linha">
+													<div class="col-l col-5">
+														<h4 class="title">{{date('d/m/Y', strtotime($album->launch_date))}}</h4>
+													</div>
+													<div class="col-l col-5">
+														<h4 class="title">{{$album->recorder}}</h4>
+													</div>
+													<div class="clear"></div>
+												</div>
+												<div class="col-10">
+													<a href="{{route('album.edit', $album->id)}}" class="btn btn-bor btn-bor-rad btn-cuidado">Editar</a>
+													<a href="#" class="btn btn-bor btn-bor-rad btn-perigo">Excluir</a>
+												</div>
+												<hr>	
+											</div>
+											@endforeach
+										</div>
+									@endif
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<hr>
 						<!-- ======================================================= EVENTOS =====================================================-->
 						<div class="linha">
 							<div class="col-l col-5">
