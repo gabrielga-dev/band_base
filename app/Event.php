@@ -14,4 +14,11 @@ class Event extends Model
     {
     	return $this->belongsTo('App\Band');
     }
+
+    public function pegaData()
+    {
+    	$meses = ['Janeiro','Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+    	$mes = date('m',strtotime($this->date));
+    	return $meses[$mes-1];
+    }
 }

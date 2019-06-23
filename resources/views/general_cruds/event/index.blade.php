@@ -19,7 +19,7 @@
 
 					<div class="linha">
 						<div class="col-l col-10">
-							<h2 class="title-center">{{date('d/m/Y', strtotime($event->date))}}</h2>
+							<h2 class="title-center">{{date('d', strtotime($event->date))}} de {{$event->pegaData()}}</h2>
 						</div>
 						<div class="clear"></div>
 					</div>
