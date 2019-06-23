@@ -1,10 +1,12 @@
 @extends('layouts.layout_master')
 @section('title', 'Início')
 @section('content')
-	<h1 class="title title-center">Band Base</h1>
+	<h1 class="title title-center">
+		<img src="{{asset('images/logo.png')}}">
+	</h1>
 	<h3 class="title">Sobre nós:</h3>
 	<p class="">
-		Nós somosuma equipe que pretende exaltar todas as pequenas bandas que não possuem seu espaço conquistado e ainda se permanessem nas sombras.
+		Nós somos uma equipe que pretende exaltar todas as pequenas bandas que não possuem seu espaço conquistado e ainda se permanessem nas sombras.
 	</p>
 	<br><br>
 	<div class="bg-grey bg-eventos">

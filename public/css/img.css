@@ -3,6 +3,11 @@
 	width: 100px;
  	height: 80px;
 }
+.img-home
+{
+	width: 100%;
+	
+}
  .profile-pic
  {
  	border: solid 2px black;

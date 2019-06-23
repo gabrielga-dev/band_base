@@ -17,10 +17,12 @@
 		<header>
 			<div class="linha">
 				<div class=" col-l col-1">
-					<a href="{{ route('inicio') }}" class="btn btn-bor btn-bor-rad">Home</a>
+					<a href="{{ route('inicio') }}" >
+						<img class="img-home" src="{{asset('images/logo02.png')}}">
+					</a>
 				</div>
 				@if(Auth::user())
-					<div class=" col-l col-1">
+					<div class=" col-l col-1 pula-1">
 						<a href="{{route('banda.index')}}" class="btn btn-bor btn-bor-rad">Bandas</a>
 					</div>
 				@endif
